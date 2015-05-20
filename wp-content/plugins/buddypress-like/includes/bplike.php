@@ -110,17 +110,84 @@ function likes_format_notifications( $action, $item_id, $secondary_item_id, $tot
         
 	switch ( $action ) {
 		case 'new_like':
-			//$link = trailingslashit( bp_core_get_root_domain() . '/activity/'.$item_id.'?initiator_id='.$secondary_item_id );
+			$media_model = new RTMediaModel();  
+                        $media_obj = $media_model->get( array( 'activity_id' => $item_id ) );  
+                        //var_dump($media_obj);
+                        //$media_obj = bp_get_media_by_activity($item_id);
+                        //var_dump($media_obj);
+                        $drem_text = "activity";
+                        $drem_src = array();
+                        if (count($media_obj) > 0){
+                            foreach ( $media_obj as $media ) {
+                                if ( $media->media_type == 'photo' )
+                                {
+                                    $drem_text = 'photo';
+                                    $drem_src = wp_get_attachment_image_src( $media->media_id );
+                                }
+                                else if ( $media->media_type == 'video' )
+                                {
+                                    $drem_text = 'video';
+                                    $drem_src = wp_get_attachment_url ( $media->media_id );
+                                }
+                                break;
+                            }
+                        }
+                        //$link = trailingslashit( bp_core_get_root_domain() . '/activity/'.$item_id.'?initiator_id='.$secondary_item_id );
                         $link = trailingslashit( bp_core_get_root_domain() . '/activity/'.$item_id );
 			// Set up the string and the filter
 			if ( (int) $total_items > 1 ) {
-                            $text = sprintf( __( '%s and %d other people like your drēm.', 'buddypress' ), bp_core_get_user_displayname( $secondary_item_id ), (int) $total_items - 1 );
+                            //$text = sprintf( __( '%s and %d other people like your drēm', 'buddypress' ), bp_core_get_user_displayname( $secondary_item_id ), (int) $total_items - 1 );
+                            $text = sprintf( __( '<span class="username">%s</span> and %d other people like your '.$drem_text, 'buddypress' ), bp_core_get_user_displayname( $secondary_item_id ), (int) $total_items - 1 );
                             $filter = 'bp_likes_multiple_new_like_notification';
 			} else {
-                            $text = sprintf( __( '%s likes your drēm', 'buddypress' ),  bp_core_get_user_displayname( $secondary_item_id ) );
-//                            $text = sprintf( __( '%s likes your drēm', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );	
+                            //$text = sprintf( __( '%s likes your drēm', 'buddypress' ),  bp_core_get_user_displayname( $secondary_item_id ) );
+                            $text = sprintf( __( '<span class="username">%s</span> likes your '.$drem_text, 'buddypress' ),  bp_core_get_user_displayname( $secondary_item_id ) );
                             $filter = 'bp_likes_single_new_like_notification';
 			}
+                        
+                        $user_link = bp_core_get_user_domain($secondary_item_id);
+                        $avatar = bp_core_fetch_avatar( array( 'item_id' => $secondary_item_id, 'width' => 40, 'height' => 40 ) );
+                        $avatar_html = '<div class="notification avatar">'
+                                                    .'<a href="'
+                                                    .$user_link
+                                                    .'" >'
+                                                    .$avatar
+                                                    .'</a></div>';
+                        
+                        $message_html = '<div class="notification message" >'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+                        
+                        $bp_like_html = '<div class="ab-notification-item">';
+                        
+                        $empty_avatar_html = '<div class="notification avatar empty">'
+                                                    .'<a href="'
+                                                    .$link
+                                                    .'">'
+                                                    .$avatar
+                                                    .'</a></div>';
+                        if ($drem_text != "activity")
+                        {
+                            if ($drem_text == "photo")
+                            {
+                                $drem = '<img src="'.$drem_src[0].'" class="drem photo" alt="Liked Drem" >';
+                            }
+                            else if ($drem_text == "video")
+                            {
+                                $drem = '<video src="'.$drem_src.'" class="drem video" type="video/mp4" preload="true" >';
+
+                            }
+                            $drem_link = $link;
+                            $drem_html = '<div class="notification drem">'
+                                                        .'<a href="'
+                                                        .$drem_link
+                                                        .'">'
+                                                        .$drem
+                                                        .'</a></div>';
+                            $bp_like_html .= $avatar_html.$message_html.$drem_html.'</div>';
+                        }
+                        else
+                        {
+                            $bp_like_html .= $avatar_html.$message_html.$empty_avatar_html.'</div>';
+                        }
 
 		break;
 
@@ -128,14 +195,17 @@ function likes_format_notifications( $action, $item_id, $secondary_item_id, $tot
 
 	// Return either an HTML link or an array, depending on the requested format
 	if ( 'string' == $format ) {
-		$return = apply_filters( $filter, '<a href="' . esc_url( $link ) . '">' . esc_html( $text ) . '</a>', (int) $total_items );
+            //$return = apply_filters( $filter, '<a href="' . esc_url( $link ) . '">' . esc_html( $text ) . '</a>', (int) $total_items );
+            $return = apply_filters( $filter, $bp_like_html, (int) $total_items );
+            //$return = apply_filters( $filter, '<a href="' . esc_url( $link ) . '">' . $bp_like_html . '</a>', (int) $total_items );
 	} else {
 		$return = apply_filters( $filter, array(
-			'link' => $link,
-			'text' => $text
+			//'link' => $link,
+			//'text' => $text
+                        'text'=> $bp_like_html
 		), (int) $total_items );
 	}
-
+        
 	do_action( 'likes_format_notifications', $action, $item_id, $secondary_item_id, $total_items, $return );
 
 	return $return;

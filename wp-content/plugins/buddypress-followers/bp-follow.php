@@ -344,7 +344,9 @@ add_action( 'bp_notification_settings', 'bp_follow_screen_notification_settings'
  *
  * @global $bp The global BuddyPress settings variable created in bp_core_setup_globals()
  */
-function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
+/*
+ function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
+ 
 	global $bp;
 
 	do_action( 'bp_follow_format_notifications', $action, $item_id, $secondary_item_id, $total_items, $format );
@@ -377,6 +379,81 @@ function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, 
 		$array = array(
 			'text' => $text,
 			'link' => $link
+		);
+
+		return apply_filters( 'bp_follow_new_followers_return_notification', $array, $item_id, $secondary_item_id, $total_items );
+	}
+}
+*/
+function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
+	global $bp;
+
+	do_action( 'bp_follow_format_notifications', $action, $item_id, $secondary_item_id, $total_items, $format );
+
+	switch ( $action ) {
+		case 'new_follow':
+                        $new_follow_avatar_html = '';
+			$link = bp_loggedin_user_domain() . $bp->follow->followers->slug . '/?new';
+
+			if ( 1 == $total_items ) {
+				//$text = __( '1 more user is now following you', 'bp-follow' );
+                                $text = sprintf(__( '<span class="username">%s</span> is now following you', 'bp-follow' ), bp_core_get_user_displayname( $item_id ));
+                                
+                                $user_link = bp_core_get_user_domain($item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                                $new_follow_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+
+			}
+			else {
+				$text = sprintf( __( '%d more users are now following you', 'bp-follow' ), $total_items );
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                                $empty_avatar_html = '<div class="notification avatar empty">'
+                                                    .'<a href="'
+                                                    .$link
+                                                    .'">'
+                                                    .$avatar
+                                                    .'</a></div>';
+                                $new_follow_avatar_html = $empty_avatar_html;
+			}
+
+                        $my_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                        $my_avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                        $my_avatar_html = '<div class="notification avatar">'
+                                                    .'<a href="'
+                                                    .$my_link
+                                                    .'">'
+                                                    .$my_avatar
+                                                    .'</a></div>';
+
+                        $new_follow_message_html = '<div class="notification message">'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+                        $bp_new_follow_html = '<div class="ab-notification-item" >';
+			$bp_new_follow_html .= $new_follow_avatar_html.$new_follow_message_html.$my_avatar_html.'</div>';
+
+		break;
+
+		default :
+			$link = apply_filters( 'bp_follow_extend_notification_link', false, $action, $item_id, $secondary_item_id, $total_items );
+			$text = apply_filters( 'bp_follow_extend_notification_text', false, $action, $item_id, $secondary_item_id, $total_items );
+		break;
+	}
+
+	if ( !$link || !$text )
+		return false;
+
+	if ( 'string' == $format ) {
+		//return apply_filters( 'bp_follow_new_followers_notification', '<a href="' . $link . '" title="' . __( 'Your list of followers', 'bp-follow' ) . '">' . $text . '</a>', $total_items, $link, $text, $item_id, $secondary_item_id );
+                return apply_filters( 'bp_follow_new_followers_notification', $bp_new_follow_html, $total_items, $link, $text, $item_id, $secondary_item_id );
+	}
+	else {
+		$array = array(
+			//'text' => $text,
+			//'link' => $link
+                        'text' => $bp_new_follow_html
 		);
 
 		return apply_filters( 'bp_follow_new_followers_return_notification', $array, $item_id, $secondary_item_id, $total_items );

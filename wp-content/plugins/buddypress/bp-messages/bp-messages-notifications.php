@@ -112,30 +112,67 @@ add_action( 'messages_message_sent', 'messages_notification_new_message', 10 );
  */
 function messages_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
 
+        $messages_avatar_html = '';
 	if ( 'new_message' === $action ) {
 		$link  = trailingslashit( bp_loggedin_user_domain() . bp_get_messages_slug() . '/inbox' );
 		$title = __( 'Inbox', 'buddypress' );
-
+                
+                $avatar = bp_core_fetch_avatar( array( 'item_id' => $secondary_item_id, 'width' => 40, 'height' => 40 ) );
+                $empty_avatar_html = '<div class="notification avatar empty">'
+                                                    .'<a href="'
+                                                    .$link
+                                                    .'">'
+                                                    .$avatar
+                                                    .'</a></div>';
 		if ( (int) $total_items > 1 ) {
 			$text   = sprintf( __('You have %d new messages', 'buddypress' ), (int) $total_items );
 			$filter = 'bp_messages_multiple_new_message_notification';
+                        $messages_avatar_html = $empty_avatar_html;
 		} else {
 			if ( !empty( $secondary_item_id ) ) {
-				$text = sprintf( __('You have %d new message from %s', 'buddypress' ), (int) $total_items, bp_core_get_user_displayname( $secondary_item_id ) );
+				$text = sprintf( __('You have %d new message from <span class="username">%s</span>', 'buddypress' ), (int) $total_items, bp_core_get_user_displayname( $secondary_item_id ) );
+
+                                $user_link = bp_core_get_user_domain($secondary_item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $secondary_item_id, 'width' => 40, 'height' => 40 ) );
+                                $messages_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
 			} else {
 				$text = sprintf( __('You have %d new message',         'buddypress' ), (int) $total_items );
 			}
 			$filter = 'bp_messages_single_new_message_notification';
 		}
+                $messages_message_html = '<div class="notification message">'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+
+
+                $bp_messages_html = '<div class="ab-notification-item" >';
+
+                $my_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                $my_avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                $my_avatar_html = '<div class="notification avatar">'
+                                        .'<a href="'
+                                        .$my_link
+                                        .'">'
+                                        .$my_avatar
+                                        .'</a></div>';
+
+                $bp_messages_html .= $my_avatar_html.$messages_message_html.$messages_avatar_html.'</div>';
 	}
 
 	if ( 'string' === $format ) {
-		$return = apply_filters( $filter, '<a href="' . esc_url( $link ) . '" title="' . esc_attr( $title ) . '">' . esc_html( $text ) . '</a>', (int) $total_items, $text, $link, $item_id, $secondary_item_id );
+		//$return = apply_filters( $filter, '<a href="' . esc_url( $link ) . '" title="' . esc_attr( $title ) . '">' . esc_html( $text ) . '</a>', (int) $total_items, $text, $link, $item_id, $secondary_item_id );
+                $return = apply_filters( $filter, $bp_messages_html, (int) $total_items );
 	} else {
-		$return = apply_filters( $filter, array(
-			'text' => $text,
-			'link' => $link
-		), $link, (int) $total_items, $text, $link, $item_id, $secondary_item_id );
+//		$return = apply_filters( $filter, array(
+//			'text' => $text,
+//			'link' => $link
+//		), $link, (int) $total_items, $text, $link, $item_id, $secondary_item_id );
+            $return = apply_filters( $filter, array(
+			'text' => $bp_messages_html,
+		), (int) $total_items);
 	}
 
 	do_action( 'messages_format_notifications', $action, $item_id, $secondary_item_id, $total_items );

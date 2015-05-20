@@ -145,7 +145,9 @@ function bp_members_admin_bar_notifications_menu() {
 		return false;
 	}
 
-	bp_notifications_toolbar_menu();
+//	bp_notifications_toolbar_menu();
+        bp_notifications_all_toolbar_menu();
+//        bp_notifications_read_toolbar_menu();
 }
 add_action( 'admin_bar_menu', 'bp_members_admin_bar_notifications_menu', 90 );
 

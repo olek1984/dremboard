@@ -345,6 +345,8 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 
 	switch ( $action ) {
 		case 'new_at_mention':
+                        $my_avatar_html = '';
+                    
 			$activity_id      = $item_id;
 			$poster_user_id   = $secondary_item_id;
 			$at_mention_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/mentions/';
@@ -353,21 +355,64 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			if ( (int) $total_items > 1 ) {
 				$text = sprintf( __( 'You have %1$d new mentions', 'buddypress' ), (int) $total_items );
 				$filter = 'bp_activity_multiple_at_mentions_notification';
-			} else {
+                        
+                                $user_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                                $activity_mention_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+                                $my_avatar_html = '<div class="notification avatar empty">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+                        } else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
-				$text =  sprintf( __( '%1$s mentioned you', 'buddypress' ), $user_fullname );
+				$text =  sprintf( __( '<span class="username">%1$s</span> mentioned you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_at_mentions_notification';
+
+                                $user_link = bp_core_get_user_domain($secondary_item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $secondary_item_id, 'width' => 40, 'height' => 40 ) );
+                                $activity_mention_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+
+                                $my_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                                $my_avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                                $my_avatar_html = '<div class="notification avatar">'
+                                                        .'<a href="'
+                                                        .$my_link
+                                                        .'">'
+                                                        .$my_avatar
+                                                        .'</a></div>';
+
 			}
+                        $mention_message_html = '<div class="notification message" style="display:inline-block;height:inherit;">'.'<a class="" href="'.$at_mention_link.'">'.$text.'</a></div>';
+                        
+                        $bp_mention_html = '<div class="ab-notification-item" >';
+                        $bp_mention_html .= $activity_mention_avatar_html.$mention_message_html.$my_avatar_html.'</div>';
+
 			if ( 'string' == $format ) {
-				$return = apply_filters( $filter, '<a href="' . esc_url( $at_mention_link ) . '" title="' . esc_attr( $at_mention_title ) . '">' . esc_html( $text ) . '</a>', $at_mention_link, (int) $total_items, $activity_id, $poster_user_id );
+				//$return = apply_filters( $filter, '<a href="' . esc_url( $at_mention_link ) . '" title="' . esc_attr( $at_mention_title ) . '">' . esc_html( $text ) . '</a>', $at_mention_link, (int) $total_items, $activity_id, $poster_user_id );
+                            $return = apply_filters( $filter, $bp_mention_html, (int) $total_items, $activity_id, $poster_user_id );
 				} else {
 				$return = apply_filters( $filter, array(
-				'text' => $text,
-				'link' => $at_mention_link
+				//'text' => $text,
+				//'link' => $at_mention_link
+                                    'text' => $bp_mention_html,
 				), $at_mention_link, (int) $total_items, $activity_id, $poster_user_id );
 				}
 		break;
 		case 'share_for_friend':
+                        $my_avatar_html = '';
+                    
 			$activity_id      = $item_id;
 			$poster_user_id   = $secondary_item_id;
 			$at_friend_share_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/friends/';
@@ -376,17 +421,59 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			if ( (int) $total_items > 1 ) {
 				$text = sprintf( __( 'You have %1$d new shared for you', 'buddypress' ), (int) $total_items );
 				$filter = 'bp_activity_multiple_share_for_you_notification';
+                                
+                                $user_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                                $activity_share_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+                                $my_avatar_html = '<div class="notification avatar empty">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+
 			} else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
-				$text =  sprintf( __( '%1$s shared for you', 'buddypress' ), $user_fullname );
+				$text =  sprintf( __( '<span class="username">%1$s</span> shared for you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_share_for_you_notification';
+                                
+                                $user_link = bp_core_get_user_domain($secondary_item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $secondary_item_id, 'width' => 40, 'height' => 40 ) );
+                                $activity_share_avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+
+                                $my_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                                $my_avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                                $my_avatar_html = '<div class="notification avatar">'
+                                                        .'<a href="'
+                                                        .$my_link
+                                                        .'">'
+                                                        .$my_avatar
+                                                        .'</a></div>';
+
 			}
+                        $shared_message_html = '<div class="notification message" style="display:inline-block;height:inherit;">'.'<a class="" href="'.$at_mention_link.'">'.$text.'</a></div>';
+                        
+                        $bp_share_html = '<div class="ab-notification-item" >';
+                        $bp_share_html .= $activity_share_avatar_html.$shared_message_html.$my_avatar_html.'</div>';
+
 			if ( 'string' == $format ) {
-				$return = apply_filters( $filter, '<a href="' . esc_url( $at_friend_share_link ) . '" title="' . esc_attr( $at_friend_share_title ) . '">' . esc_html( $text ) . '</a>', $at_friend_share_link, (int) $total_items, $activity_id, $poster_user_id );
+				//$return = apply_filters( $filter, '<a href="' . esc_url( $at_friend_share_link ) . '" title="' . esc_attr( $at_friend_share_title ) . '">' . esc_html( $text ) . '</a>', $at_friend_share_link, (int) $total_items, $activity_id, $poster_user_id );
+                                $return = apply_filters( $filter, $bp_share_html, (int) $total_items, $activity_id, $poster_user_id );
 			} else {
 				$return = apply_filters( $filter, array(
-				'text' => $text,
-				'link' => $at_friend_share_link
+				//'text' => $text,
+				//'link' => $at_friend_share_link
+                                    'text' => $bp_share_html
 				), $at_friend_share_link, (int) $total_items, $activity_id, $poster_user_id );
 			}
 		break;

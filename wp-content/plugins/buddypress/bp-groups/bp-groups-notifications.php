@@ -340,7 +340,7 @@ function groups_format_notifications( $action, $item_id, $secondary_item_id, $to
 				}
 			} else {
 				$user_fullname = bp_core_get_user_displayname( $requesting_user_id );
-				$text = sprintf( __( '%s requests group membership', 'buddypress' ), $user_fullname );
+				$text = sprintf( __( '<span class="username">%s</span> requests group membership', 'buddypress' ), $user_fullname );
 				$filter = 'bp_groups_single_new_membership_request_notification';
 				$notification_link = $group_link . 'admin/membership-requests/?n=1';
 
