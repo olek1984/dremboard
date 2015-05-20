@@ -1,0 +1,18 @@
+{
+	"template": {
+		"name": "Msocial",
+		"update_name": "gk_msocial_wp",
+		"date": "07/03/2014",
+		"version": "1.1.4",
+		"description": "Responsive GavickPro Wordpress theme based on the GavernWP framework"
+	},
+	"developer_config": {
+		"visibility": {
+			"template_options": true,
+			"importexport": true,
+			"updates": true,
+			"documentation": true,
+			"gavickpro_website": true
+		}
+	}
+}

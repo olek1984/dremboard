@@ -1,0 +1,41 @@
+.social-buttons {
+background: #fafafa;
+border: 1px solid #ddd;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+display: none;
+margin: 20px 0 5px 2px;
+padding: 7px 5px 1px;
+text-align: left;
+width: 180px;
+}
+
+.users-who-like {
+display: none;
+}
+
+.social-buttons a {
+-webkit-transition: color .2s;
+-moz-transition: color .2s;
+-o-transition: color .2s;
+transition: color .2s;
+overflow: hidden;
+line-height: 1.5 !important;
+padding: 0px !important;
+/*margin-right: 5px;*/
+text-decoration: none;
+}
+
+.social-buttons a:hover {
+-webkit-transition: color .2s;
+-moz-transition: color .2s;
+-o-transition: color .2s;
+transition: color .2s;
+text-decoration: none;
+}
+
+.buddypress-social-button
+{
+padding-top:0px !important;
+}

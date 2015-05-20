@@ -1,0 +1,54 @@
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query CREATE TABLE wp_rt_rtm_media (
+    id bigint(20) NOT NULL AUTO_INCREMENT ,
+    blog_id bigint(20) NULL DEFAULT NULL,
+    media_id bigint(20) NOT NULL ,
+    media_author bigint(20) NOT NULL,
+    media_title text,
+    album_id bigint(20),
+    media_type varchar(100) NULL DEFAULT NULL ,
+    context varchar(100) NULL DEFAULT NULL ,
+    context_id bigint(20) NULL DEFAULT NULL ,
+    source varchar(100) NULL DEFAULT NULL ,
+    source_id bigint(20) NULL DEFAULT NULL ,
+    activity_id bigint(20) NULL DEFAULT NULL ,
+    cover_art varchar(250) NULL DEFAULT NULL,
+    privacy int(3) NULL DEFAULT NULL ,
+    views bigint(20) NULL DEFAULT 0 ,
+    downloads bigint(20) NULL DEFAULT 0 ,
+    ratings_total bigint(20) NULL DEFAULT 0 ,
+    ratings_count bigint(20) NULL DEFAULT 0 ,
+    ratings_average decimal(4,2) NULL DEFAULT 0 ,
+    likes bigint(20) NULL DEFAULT 0 ,
+    dislikes bigint(20) NULL DEFAULT 0 ,
+    PRIMARY KEY  (id),
+    KEY media_id (media_id),
+    KEY media_author (media_author),
+    KEY album_id (album_id),
+    KEY media_author_id (album_id,media_author),
+    KEY context_author_album_id (context_id,album_id,media_author),
+    KEY context_data (context),
+    KEY activity_id (activity_id)
+) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, RTDBUpdate->create_table, dbDelta
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media_interaction' for query CREATE TABLE wp_rt_rtm_media_interaction (
+    id bigint(20) NOT NULL AUTO_INCREMENT ,
+    user_id bigint(20) NOT NULL DEFAULT 0,
+    media_id bigint(20) NOT NULL DEFAULT 0,
+    action varchar(255),
+    value varchar(255),
+    action_date TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY  (id)
+) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, RTDBUpdate->create_table, dbDelta
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media_meta' for query CREATE TABLE wp_rt_rtm_media_meta (
+    id bigint(20) NOT NULL AUTO_INCREMENT ,
+    media_id bigint(20) NOT NULL DEFAULT 0,
+    meta_key varchar(255),
+    meta_value longtext,
+    PRIMARY KEY  (id)
+) made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, RTDBUpdate->create_table, dbDelta
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query SELECT COUNT(*) FROM wp_rt_rtm_media WHERE id = '1' made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_parent_id, RTMediaModel->get_by_id, RTMediaModel->__call, RTDBModel->__call
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query UPDATE wp_rt_rtm_media SET privacy = '80' where privacy = '-1'  made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_privacy
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query  UPDATE wp_rt_rtm_media m join wp_bp_groups bp on m.context_id = bp.id SET m.privacy = 0 where m.context = 'group' and bp.status = 'public' and m.privacy <> 80  made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_group_media_privacy
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query  UPDATE wp_rt_rtm_media m join wp_bp_groups bp on m.context_id = bp.id SET m.privacy = 20 where m.context = 'group' and ( bp.status = 'private' OR bp.status = 'hidden' ) and m.privacy <> 80  made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_group_media_privacy
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media' for query ALTER TABLE wp_rt_rtm_media CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_db_collation
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media_meta' for query ALTER TABLE wp_rt_rtm_media_meta CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_db_collation
+[14-Nov-2014 17:49:41 UTC] WordPress database error Incorrect file format 'wp_rt_rtm_media_interaction' for query ALTER TABLE wp_rt_rtm_media_interaction CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), include_once('/plugins/buddypress-media/index.php'), RTMedia->__construct, RTMedia->update_db, RTDBUpdate->do_upgrade, do_action('rt_db_upgrade'), call_user_func_array, RTMedia->fix_db_collation

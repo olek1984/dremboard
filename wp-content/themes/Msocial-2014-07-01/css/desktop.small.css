@@ -1,0 +1,45 @@
+/**
+ *
+ * -------------------------------------------
+ * Small Desktop CSS file
+ * -------------------------------------------
+ * 
+ **/
+ 
+/*
+ *
+ * 10. Small Desktop code
+ *
+ *
+------------------------------------ */
+ 
+/* 10.1. Base elements
+==================================== */ 
+
+#gk-footer {
+	text-align: center;
+}
+
+#gk-style-area {
+	float: none;
+	margin: 0;
+}
+
+#footer-menu {
+	display: inline-block!important;
+	line-height: 1.0;
+}
+
+#footer-menu,
+.gk-copyrights {
+	clear: both;
+	display: block;
+	float: none!important;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#gk-menu-overlay-wrap {
+	margin:  0 0 0 -360px!important;
+	max-width: 720px!important;
+}

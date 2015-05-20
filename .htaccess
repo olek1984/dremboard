@@ -1,0 +1,26 @@
+#<Limit GET POST>
+#order deny,allow
+#deny from all
+#allow from all
+#</Limit>
+#<Limit PUT DELETE>
+#order deny,allow
+#deny from all
+#</Limit>
+#AuthName "Restricted Area" 
+#AuthType Basic 
+#AuthUserFile /home/dremboar/.htpasswdnow
+#AuthGroupFile /dev/null 
+#require valid-user
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

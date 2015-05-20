@@ -1,0 +1,424 @@
+/**
+ *
+ * -------------------------------------------
+ * Tablet CSS file
+ * -------------------------------------------
+ * 
+ **/
+ 
+/*
+ *
+ * 11. Tablet code
+ *
+ *
+------------------------------------ */
+ 
+/* 11.1. Base elements
+==================================== */ 
+
+#gk-top {
+	/*padding: 0 30px;*/
+}
+
+.gk-is-wrapper-gk-bluap {
+	margin: 0 30px;
+}
+
+#gk-header-bottom {
+	padding: 40px 30px 0 30px;
+}
+
+#gk-mainbody-columns {
+	padding: 1px 12px !important;
+}
+
+#gk-breadcrumb-area {
+	padding: 20px 30px!important;
+}
+
+#gk-user-area  {
+	margin: 18px 0 0 10px;
+	padding: 3px 6px;
+}
+
+#gk-bottom1.gk-single-widget > div, 
+#gk-bottom2.gk-single-widget > div, 
+#gk-bottom3.gk-single-widget > div, 
+#gk-bottom4.gk-single-widget > div, 
+#gk-bottom5.gk-single-widget > div, 
+#gk-bottom6.gk-single-widget > div {
+	margin: 0 -30px!important;
+}
+
+#gk-bottom1.gk-single-widget .box, 
+#gk-bottom2.gk-single-widget .box, 
+#gk-bottom3.gk-single-widget .box, 
+#gk-bottom4.gk-single-widget .box, 
+#gk-bottom5.gk-single-widget .box, 
+#gk-bottom6.gk-single-widget .box {
+	padding: 30px!important;
+}
+
+#gk-bottom1, 
+#gk-bottom2, 
+#gk-bottom3, 
+#gk-bottom4, 
+#gk-bottom5, 
+#gk-bottom6,
+#gk-footer {
+	padding: 0 30px!important;
+}
+
+#gk-sidebar {
+	padding: 0!important;
+}
+
+#gk-sidebar .box {
+	border: none!important;
+}
+
+/* sidebar */
+#gk-mainbody-columns {
+	display: block;
+}
+
+
+#gk-mainbody-columns > section, #gk-mainbody-columns > aside {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    display: block;
+    width: 100% !important;
+}
+#buddypress ul.item-list li img.avatar {
+  
+    height: 54px !important;
+}
+
+/* Archive page */
+.archivepage .widget.first {
+	margin-right: 2%;
+	margin-left: 0!important;
+}
+
+.archivepage .widget.first,
+.archivepage .widget.first + .widget {
+	margin-right: 0;
+	margin-left: 2%;
+	width: 48%;
+}
+
+.archivepage .widget.last {
+	margin: 0;
+	width: 100%;
+}
+#gk-mainbody-columns {
+    background: none !important;
+    box-sizing: border-box;
+}
+.archivepage .widget ul {
+	margin-bottom: 30px;
+}
+
+/* images fix */
+#gk-mainbody img {
+	height: auto!important;
+	max-width: 100%!important;
+}
+
+/* column rules */
+#gk-sidebar .box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	margin-top: 0!important;
+	margin-bottom: 30px!important;
+	padding: 10px!important;
+	width: 100% !important;
+}
+#gk-sidebar .gk-tabs-item.active .box {
+	width: 100%;
+}
+#gk-sidebar {
+	padding: 0!important;
+}
+#gk-sidebar .box:first-child {
+	padding-top: 10px!important;
+}
+#gk-sidebar .box:nth-child(2n+1) {
+	clear: both!important;
+}
+#wp-toolbar > ul > li{
+display:block !important;
+}
+#head-search > form {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    margin-top: 10px !important;
+    width: auto !important;
+}
+#short_code_si_icon1 > a {
+    margin-top: 12px !important;
+}
+.widget-area .col1 { width: 100%; }
+.widget-area .col2 { width: 50%; }
+.widget-area .col3 { width: 33.3%; }
+.widget-area .col4 { width: 50%; }
+.widget-area .col5 { width: 33.3%; }
+.widget-area .col6 { width: 33.3%; }
+
+.widget-area .box.last1 { width: 100%; }
+.widget-area .box.last2 { width: 50%; }
+.widget-area .box.last3 { width: 33.3%; }
+.widget-area .box.last4 { width: 50%; }
+.widget-area .box.last5 { width: 33.3%; }
+
+.widget-area .nth1 {
+	clear: both;
+}
+
+.widget-area .col6.last5.nth4,
+.widget-area .col6.last5.nth5 {
+	width: 50%;
+}
+
+#gk-bottom1, 
+#gk-bottom2 {
+	padding: 30px 0;
+}
+
+.gk-columns > div {
+	padding: 0 6px;
+}
+
+/* 11.2. Content elements
+==================================== */
+.box.headlines .gk-nsp-art {
+	padding-left: 40px!important;
+	padding-right: 40px!important;
+}
+
+.box.headlines .gk-nsp-arts-page {
+	margin: 0 -40px;
+	width: auto;
+}
+
+.readon {
+	padding: 0 19px;
+}
+
+.frontpage #gk-mainbody article {
+	border-right: none!important;
+	margin-bottom: 52px;
+	padding: 52px 0!important;
+	width: 100%;
+}
+
+
+/* 11.3. Other elements
+==================================== */
+
+.gk-is-wrapper-gk-bluap .figcaption h2 {
+	font-size: 32px;
+	line-height: 42px;
+	margin: 30px 0 20px 0;
+}
+
+.gk-form input[type="text"], 
+.gk-form input[type="email"], 
+.gk-form input[type="www"], 
+.gk-form input[type="password"] {
+	width: 50%;
+}
+
+/* 11.4. Main menu elements
+==================================== */ 
+
+#gk-top .menu {
+	/*display: none;*/
+}
+
+#gk-top .menu.gk-menu-overlay {
+   clear: both;
+   float: left;
+   display: block;
+}
+
+#main-menu > li,
+#main-menu > li a {   
+   height: 40px;
+   line-height: 41px;
+   font-size: 12px;
+}
+
+#main-menu > li {
+   margin: 0 10px 0 0!important
+}
+
+#main-menu-mobile {
+	color: #999;
+	display: block!important;
+	float: right;
+	font-size: 32px;
+	height: 44px;
+	line-height: 44px;
+	margin: 10px 0 0 10px!important;
+	overflow: hidden;
+	position: relative;
+	width: 30px;
+}
+
+#main-menu-mobile > select {
+	border: none;	
+	display: block;
+	width: 44px!important;
+	height: 44px!important;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	padding: 6px!important;
+	position: absolute!important;
+	left: 0;
+	font-size: 14px;
+	top: 0;
+}
+
+body[data-mobile="true"] #main-menu-mobile > select {
+	font-size: 50px;
+}
+
+/* 11.5. Footer
+==================================== */ 
+
+
+
+/* 11.6. Device classes
+==================================== */
+
+.onlyDesktop {
+	display: none!important;
+}
+
+.onlyTablets {
+	display: block!important;
+}
+
+.onlySmartphones {
+	display: none!important;
+}
+
+.onlyTabltetsAndSmartphones {
+	display: block!important;
+}
+
+/* 11.7. Responsive tables
+==================================== */
+
+@media (max-width: 600px) {
+	article section table {
+		border: 1px solid #eee;
+		border-bottom: none;
+		max-width: 100%!important;
+		width: 100%!important;
+	}
+	
+	article section table thead {
+		display: none;
+	}
+	
+	article section table td {
+		border-top: 1px solid #eee;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		clear: both;
+		display: block;
+		float: right;
+		padding: 5px 0 5px 50%;
+		position: relative;
+		width: 100%;
+	}
+	
+	article section table td:first-child {
+		border-top: none;
+	}
+	
+	article section table tbody tr {
+		border-bottom: 2px solid #eee;
+	}
+	
+	article section table td span.gk-table-label {
+		display: block;
+		font-size: 95%;
+		font-weight: 500;
+		left: 5px;
+		position: absolute;
+	}
+	
+	.buddypress article section .notifications td span.gk-table-label {
+	      display: none;
+	}
+}
+
+
+/* 11.8. BuddyPress
+==================================== */
+.box.widget_gk_login #gk-wp-submit {
+	margin: 10px 0;
+}
+nav.gklogin-small {
+	float: left;
+	margin: 3px 0;
+}
+#buddypress .activity-header > p {
+	line-height: 34px!important;
+}
+.box.login-bg {
+	padding: 25px;
+}
+
+.button.bp-title-button {
+	margin: 3px 30px 20px 0!important;
+}
+
+.widget_gk_buddypress .gk-member-status {
+	padding: 15px;
+}
+
+.widget_gk_buddypress .gk-member-status > a:first-child {
+	font-size: 14px;
+	padding: 4px 0 10px;
+}
+
+.widget_gk_buddypress .gk-member-status a.no-readmore,
+.widget_gk_buddypress .gk-member-status > p {
+	font-size: 12px;
+}
+
+.widget_gk_buddypress .gk-member-status p > a {
+	font-size: 11px;
+}
+
+.gk-bp-latest-photos[data-cols="5"] > div > a {
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    height: 104px;
+    margin: 5px;
+    overflow: hidden;
+    padding: 5px;
+    width: 23%!important;
+}
+
+#wpadminbar {
+
+    height: auto !important;
+   
+}
+#main-menu {
+    float: right;
+    margin: 12px 0 0 !important;
+    padding: 0;
+    width: auto;
+}
+.rtmedia-activity-container .rtmedia-list .rtmedia-item-thumbnail, .bp_media_content img {
+    max-width: 100% !important;
+	height:auto !important;
+}

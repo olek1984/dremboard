@@ -1,0 +1,331 @@
+/**
+ *
+ * -------------------------------------------
+ * Style2
+ * -------------------------------------------
+ *
+ **/
+
+/*
+ *
+ * 15. Style II
+ *
+ *
+------------------------------------ */
+
+/* 15.1. Basic colors
+==================================== */
+
+/* template.css */
+a,
+#comments a,
+article header ul a,
+a.textLogo > span,
+#gk-mainbody header h1 a,
+#gk-mainbody header h2 a,
+#gk-footer a:active,
+#gk-footer a:focus,
+#gk-footer a:hover,
+.frontpage #gk-mainbody header h2 a,
+.frontpage #gk-mainbody header h2 a:active,
+.frontpage #gk-mainbody header h2 a:focus,
+.frontpage #gk-mainbody header h2 a:hover {
+	color: #000;
+}
+
+.btn,
+button,
+.button,
+.readon,
+.nav-btn a,
+.more-link,
+.gk-button,
+a.gk-button,
+input[type="button"],
+input[type="submit"],
+.nav-prev a,
+.nav-next a {
+	border: 1px solid #72c4b9;
+	color: #72c4b9!important;
+}
+
+.border:hover,
+.gk-price-table dd a:hover,
+#gk-bottom2 .box .border:hover {
+	background: #72c4b9!important;
+	border-color: #72c4b9!important;
+}
+
+#gk-header-bottom {
+	background: #72c4b9!important;
+}
+
+/* wp.css */
+article > header .header-date,
+article header h1 sup,
+article.sticky header h1 sup,
+article header h2 sup,
+article.sticky header h2 sup,
+#comments > .icon-comments {
+	background-color: #72c4b9;
+}
+
+
+/* stuff.css */
+#gk-mainbody p.tags a,
+.gk-format-aside:before,
+.gk-format-audio:before,
+.gk-format-chat:before,
+.gk-format-gallery:before,
+.gk-format-image:before,
+.gk-format-link:before,
+.gk-format-quote:before,
+.gk-format-status:before,
+.gk-format-video:before,
+.author-info h2 a:hover,
+.gk-breadcrumbs a:active,
+.gk-breadcrumbs a:focus,
+.gk-breadcrumbs a:hover,
+.gk-testimonials:before,
+.gk-author > span > a:active,
+.gk-author > span > a:focus,
+.gk-author > span > a:hover,
+.gk-togglers dt.active,
+.gk-togglers dt.active:before,
+.gk-togglers dt:hover:before,
+.gk-price-table dl.gk-premium dt,
+.gk-price-table dl.gk-premium dd,
+.gk-price-table dl.gk-premium dd.gk-price small,
+#gk-menu-overlay-content li a:active,
+#gk-menu-overlay-content li a:focus,
+#gk-menu-overlay-content li a:hover,
+#gk-menu-overlay-close {
+	color: #72c4b9;
+}
+
+.big-btn {
+	border: 1px solid #72c4b9;
+	color: #72c4b9;
+}
+
+.gk-price-table .gk-premium dd a {
+	background: #72c4b9!important;
+	border-color: #72c4b9!important;
+}
+
+/* wp.extensions.css */
+.box.tags .tagcloud a:hover,
+.box.dark a:active,
+.box.dark a:focus,
+.box.dark a:hover  {
+	color: #72c4b9!important;
+}
+
+.box.colortitle .box-title {
+	color: #72c4b9;
+}
+
+.box.color,
+#gk-header-bottom .box {
+	background: #72c4b9!important;
+	color: #ceede9;
+}
+
+.box.color a.readon {
+	border-color: #ceede9!important;
+}
+
+.box.login-bg .btn-join:hover {
+	border: 1px solid #72c4b9;
+	color: #72c4b9;
+}
+
+.box.color a:active,
+.box.color a:focus,
+.box.color a:hover,
+#gk-header-bottom .box a:active,
+#gk-header-bottom .box a:focus,
+#gk-header-bottom .box a:hover {
+	color: #ceede9!important;
+}
+
+.color .big-btn:active,
+.color .big-btn:focus,
+.color .big-btn:hover {
+	border-color: #ceede9;
+	color: #ceede9;
+} 
+
+/* extensions.css */
+.gk-tabs-wrap > ol li.active,
+.gk-tabs-wrap > ol li.active:hover {
+	border-bottom: 1px solid #72c4b9;
+	color: #72c4b9;
+}
+
+.gk-tabs-wrap > ol li:hover,
+nav.gklogin-small a:hover,
+nav.gklogin-small a:active,
+nav.gklogin-small a:focus,
+.gk-photo > h3 > a:active,
+.gk-photo > h3 > a:focus,
+.gk-photo > h3 > a:hover,
+.gk-photo > h4 > a:active,
+.gk-photo > h4 > a:focus,
+.gk-photo > h4 > a:hover,
+.gk-photo > .gk-text-black > a:active,
+.gk-photo > .gk-text-black > a:focus,
+.gk-photo > .gk-text-black > a:hover,
+.gk-text.gk-color4 h1 a:hover,
+.gk-text.gk-color4 h2 a:hover,
+.gk-text.gk-color4 h3 a:hover,
+.gk-grid-title-overlay > figcaption a:active,
+.gk-grid-title-overlay > figcaption a:focus,
+.gk-grid-title-overlay > figcaption a:hover,
+.gk-nsp-next:hover:after,
+.gk-nsp-prev:hover:after {
+	color: #72c4b9;
+}
+
+.gk-icon.gk-color1,
+.gk-text,
+.gk-text.gk-color1 { 
+	background: #72c4b9; 
+}
+
+.gk-nsp-arts-nav li:hover,
+.gk-nsp-arts-nav li.active,
+.gk-nsp-links-nav li:hover,
+.gk-nsp-links-nav li.active {
+	background-color: #72c4b9;
+}
+
+/* shortcodes.typography.css */
+.gk-warning,
+.gk-error,
+.gk-contact-error {
+	background-color: #72c4b9;
+}
+
+pre,
+pre.gk-code {
+	border-left-color: #72c4b9;
+}
+
+.gk-numblock[data-style="style3"] span {
+	color: #72c4b9;
+	border-color: #72c4b9;
+}
+
+blockquote.gk-quote:before,
+article .content ul li:before,
+article .intro ul li:before,
+article .summary ul li:before,
+article ul[data-style="style2"] li:before,
+article ul[data-style="style3"] li:before,
+article ul[data-style="style4"] li:before,
+.gk-toggle.opened > h3:after,
+.gk-toggle.closed > h3:after {
+	color: #72c4b9;
+}
+
+.gk-note:before,
+.gk-members > strong:first-child {
+	background-color: #72c4b9;
+}
+
+/* templates/gallery.css */
+#gallery ol li:hover,
+#gallery ol li.active {
+	background: #72c4b9!important;
+	border: 1px solid #72c4b9!important;
+}
+
+/* gk.buddypress.css */
+#buddypress .acomment-options a,
+#buddypress ul.button-nav li.current a,
+#buddypress ul.button-nav li a:hover,
+#buddypress ul.button-nav li.current a:hover,
+#buddypress a.bp-primary-action span, 
+#buddypress #reply-title small a span,
+#buddypress a.bp-primary-action:hover span,
+#buddypress #reply-title small a:hover span,
+.rtmedia-container .rtmedia-list .rtmedia-list-item a h4,
+.rtmedia-container .rtmedia-item-title a,
+.rtmedia-container.rtmedia-single-container .row .rtmedia-single-meta .rtmedia-item-actions .rtmedia-action-buttons span,
+.rtmedia-comment-author,
+.rtmedia-container .rtmedia-item-title, .rtmedia-activity-container .rtmedia-item-title:hover, 
+#buddypress div.rtmedia-activity-container .rtmedia-item-title a:hover,
+.rtmedia-container .rtmedia-item-title, .rtmedia-activity-container .rtmedia-item-title:active, 
+#buddypress div.rtmedia-activity-container .rtmedia-item-title a:active,
+.rtmedia-container .rtmedia-item-title, .rtmedia-activity-container .rtmedia-item-title:focus, 
+#buddypress div.rtmedia-activity-container .rtmedia-item-title a:focus,
+#buddypress div.item-list-tabs ul li.selected a,
+#buddypress div.item-list-tabs ul li.current a,
+#buddypress .button-nav li.current a,
+#buddypress div.item-list-tabs ul li a:active,
+#buddypress div.item-list-tabs ul li a:focus,
+#buddypress div.item-list-tabs ul li a:hover   {
+	color: #72c4b9!important;
+}
+
+#buddypress div.item-list-tabs ul li a span,
+#buddypress div.item-list-tabs ul li a:hover span,
+#buddypress div.item-list-tabs ul li.current a span,
+#buddypress div.item-list-tabs ul li.selected a span,
+#buddypress div.item-list-tabs ul li.current a span,
+.rtmedia-container.rtmedia-single-container .row .rtmedia-single-meta .rtmedia-item-actions .rtmedia-action-buttons span,
+.rtmedia-single-container.rtmedia-activity-container .row .rtmedia-single-meta .rtmedia-item-actions .rtmedia-action-buttons span,
+#buddypress div.rtmedia-single-container.rtmedia-activity-container .row .rtmedia-single-meta .rtmedia-item-actions .rtmedia-action-buttons span,
+#buddypress div#message p,
+#sitewide-notice p,
+#buddypress div#message.error p,
+.rtmedia-error,
+#buddypress .standard-form#signup_form div div.error {
+	background-color: #72c4b9!important;
+}
+
+#buddypress div.item-list-tabs ul li.current,
+#buddypress div.item-list-tabs ul li.current:hover,
+#buddypress div.item-list-tabs ul li.selected,
+#buddypress div.item-list-tabs ul li.selected:hover,
+#buddypress .button-nav li.current,
+#buddypress .button-nav li.current:hover {
+	border-bottom-color: #72c4b9!important;
+}
+
+#buddypress input[type=submit],
+#buddypress input[type=button],
+#buddypress .ac-reply-cancel,
+#buddypress button,
+#buddypress a.button.edit,
+#buddypress button,
+#buddypress a.button,
+#buddypress .comment-reply-link, 
+a.bp-title-button,
+#buddypress button:hover,
+#buddypress .comment-reply-link:hover,
+#buddypress .activity-list li.load-more a,
+#buddypress #delete-group-avatar-button a {
+	background: none repeat scroll 0 0 #4E93AB !important;
+    border: 1px solid #72C4B9 !important;
+    color: #72C4B9 !important;
+}
+
+#buddypress div.generic-button a:active,
+#buddypress div.generic-button a:focus,
+#buddypress div.generic-button a:hover,
+#buddypress .action a.button.remove:hover,
+#buddypress .action a.button.remove:active,
+#buddypress .action a.button.remove:focus,
+#buddypress .thread-options a.button.confirm:hover,
+.rtmedia-container.rtmedia-single-container .row .rtmedia-single-meta .rtmedia-item-actions .rtmedia-action-buttons span,
+#buddypress .rtmedia-comment-link,
+#rtm-media-options .primary,
+#rtm-media-options .primary i,
+.rtmedia-container ul#rtmedia_comment_ul li .rtmedia-comment-author a,
+.rtmedia-activity-container ul#rtmedia_comment_ul li .rtmedia-comment-author a,
+.rtmedia-container ul#rtmedia_comment_ul li .rtmedia-delete-comment,
+.rtmedia-activity-container ul#rtmedia_comment_ul li .rtmedia-delete-comment  {
+	color: #72c4b9!important;
+}

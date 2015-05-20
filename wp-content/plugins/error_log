@@ -1,0 +1,1 @@
+[26-Apr-2015 15:45:10 America/Denver] PHP Fatal error:  Call to undefined function add_action() in /home/dremboar/public_html/wp-content/plugins/hello.php on line 60

@@ -1,0 +1,37 @@
+/**
+ *
+ * -------------------------------------------
+ * IE code fixes
+ * -------------------------------------------
+ *
+ **/
+
+/*
+ *
+ * 14. IE
+ *
+ *
+------------------------------------ */
+
+/* 14.2. IE9
+==================================== */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="www"],
+input[type="tel"] {
+	line-height: 1.2!important;
+}
+
+table,
+table tr,
+table td,
+table tbody,
+table thead {
+     vertical-align: top!important;
+}
+
+.admin-bar #gk-top {
+   padding-top: 32px;
+}

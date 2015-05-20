@@ -1,0 +1,286 @@
+/**
+ *
+ * -------------------------------------------
+ * Small Tablet CSS file
+ * -------------------------------------------
+ * 
+ **/
+ 
+/*
+ *
+ * 12. Small Tablet code
+ *
+ *
+------------------------------------ */
+ 
+/* 12.1. Base elements
+==================================== */ 
+
+@media (max-height: 768px) and (max-width: 1024px) {
+	body {
+		background: #e3e3e3 url('../images/bg_small_tablet.jpg') no-repeat center top;
+		background-size: cover!important;
+	}
+}
+
+#gk-mainbody article > header h1, 
+#gk-mainbody article > header h2 {
+	font-size: 32px;
+	line-height: 32px;
+}
+
+#gk-header-bottom {
+	padding: 20px 30px 0 30px;
+}
+
+.gk-icons > div {
+	clear: both;
+	float: none;
+	margin: 0 auto;
+	max-width: 300px;
+	width: 100%;
+}
+
+#gk-breadcrumb {
+	padding: 10px 0;
+}
+
+#gk-menu-overlay-wrap {
+	margin:  -20px 0 0 -260px!important;
+	max-width: 520px!important;
+}
+
+#gk-menu-overlay-wrap.open {
+	margin-top: 0;
+}
+
+#gk-menu-overlay-content li {
+	font-size: 20px;
+}
+
+#gk-menu-overlay-content li,
+#gk-menu-overlay-content li a {
+	line-height: 58px;
+}
+
+.gk-breadcrumbs > a,
+.gk-breadcrumbs > span {
+	font-size: 16px!important;
+	line-height: 1.0!important;
+}
+
+.gk-price-table dl {
+	padding: 20px 10px;
+}
+
+.gk-price-table dt {
+	font-size: 16px;
+}
+
+.gk-price-table dl dd.gk-price {
+	font-size: 32px;
+}
+
+.gk-price-table dd a {
+	margin: 10px 0;
+	padding: 0 20px;
+}
+
+.gk-is-wrapper-gk-bluap .figcaption h2 {
+	font-size: 25px;
+	line-height: 34px;
+	margin: 0px 0 20px 0;
+}
+
+.gk-is-wrapper-gk-bluap .figcaption p {
+	font-size: 16px;
+	padding: 5px 0;
+}
+
+.gk-is-wrapper-gk-bluap .figcaption a.button {
+	margin: 16px auto 10px auto;
+	padding: 0 16px;
+}
+
+.gk-is-wrapper-gk-bluap .figcaption a.button i[class^="icon-"] {
+	margin-left: -8px;
+}
+
+.icon-big {
+	font-size: 48px;
+	margin-right: 10px;
+}
+
+.box.bigger-text {
+	font-size: 15px;
+}
+
+.box.bigger-text strong {
+	font-size: 16px;
+}
+
+#gk-mainbody-columns {
+	padding: 60px 30px 0 30px;
+}
+
+.gk-desc {
+	font-size: 15px;
+}
+
+.gk-header {
+	font-size: 24px;
+	font-weight: 300;
+	letter-spacing: -1px;
+	margin: 24px 0 12px 0;
+}
+
+.gk-togglers {
+	padding: 0 12px;
+}
+
+.gk-togglers dt {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 25px;
+	margin: 0 -10px;
+	padding: 12px 14px 10px 16px;
+}
+
+.gk-togglers dt:before {
+	left: -5px;
+}
+
+.box.bigtitle .box-title {
+	font-size: 40px;
+	margin: 0 0 40px 0;
+}
+
+.box.bigtitle .box-title small {
+	font-size: 40px;
+}
+
+.box.bigtitle.headlines .box-title small {
+	font-size: 36px;
+}
+
+.box.headlines .gk-nsp-art {
+	padding-left: 10px!important;
+	padding-right: 10px!important;
+}
+
+.box.headlines .gk-nsp-arts-page {
+	margin: 0 -10px;
+	width: auto;
+}
+
+.box.headlines .gk-nsp-header {
+	font-size: 14px;
+	margin-bottom: 12px;
+}
+
+.gk-nsp-art .gk-nsp-text {
+	font-size: 13px;
+}
+
+.big-btn {
+	font-size: 16px;
+	line-height: 45px;
+	margin: 10px auto 16px auto;
+	padding: 0 30px;
+}
+
+.gk-testimonials p {
+	font-size: 14px;
+}
+
+#gk-bottom1.gk-single-widget .box.bigspaces, 
+#gk-bottom2.gk-single-widget .box.bigspaces, 
+#gk-bottom3.gk-single-widget .box.bigspaces, 
+#gk-bottom4.gk-single-widget .box.bigspaces {
+	padding-top: 40px!important;
+}
+
+
+div[data-mobile-width="30"],
+address[data-mobile-width="30"] { width: 30%; }
+div[data-mobile-width="35"],
+address[data-mobile-width="35"] { width: 35%; }
+div[data-mobile-width="40"],
+address[data-mobile-width="40"] { width: 40%; }
+div[data-mobile-width="45"],
+address[data-mobile-width="45"] { width: 45%; }
+div[data-mobile-width="50"],
+address[data-mobile-width="50"] { width: 50%; }
+div[data-mobile-width="55"],
+address[data-mobile-width="55"] { width: 55%; }
+div[data-mobile-width="60"],
+address[data-mobile-width="60"] { width: 60%; }
+div[data-mobile-width="65"],
+address[data-mobile-width="65"] { width: 65%; }
+div[data-mobile-width="70"],
+address[data-mobile-width="70"] { width: 70%; }
+
+
+#gk-bottom5.gk-single-widget .box.bigspaces, 
+#gk-bottom6.gk-single-widget .box.bigspaces {
+	padding-bottom: 30px!important;
+	padding-top: 40px!important;
+}
+
+@media (max-width: 640px) {
+	div[data-width="30"],
+	address[data-width="30"],
+	div[data-width="35"],
+	address[data-width="35"],
+	div[data-width="40"],
+	address[data-width="40"],
+	div[data-width="45"],
+	address[data-width="45"],
+	div[data-width="50"],
+	address[data-width="50"],
+	div[data-width="55"],
+	address[data-width="55"],
+	div[data-width="60"],
+	address[data-width="60"],
+	div[data-width="65"],
+	address[data-width="65"],
+	div[data-width="70"],
+	address[data-width="70"],
+	div[data-mobile-width="30"],
+	address[data-mobile-width="30"],
+	div[data-mobile-width="35"],
+	address[data-mobile-width="35"],
+	div[data-mobile-width="40"],
+	address[data-mobile-width="40"],
+	div[data-mobile-width="45"],
+	address[data-mobile-width="45"],
+	div[data-mobile-width="50"],
+	address[data-mobile-width="50"],
+	div[data-mobile-width="55"],
+	address[data-mobile-width="55"],
+	div[data-mobile-width="60"],
+	address[data-mobile-width="60"],
+	div[data-mobile-width="65"],
+	address[data-mobile-width="65"],
+	div[data-mobile-width="70"],
+	address[data-mobile-width="70"] {
+		border: none!important;
+		float: none!important; 
+		margin: 0 auto!important;
+		max-width: 320px!important;
+		overflow: hidden;
+		padding: 15px 0 15px 0!important;
+		width: 100%!important; 
+	}	
+}
+
+/* 12.2. BuddyPress
+==================================== */ 
+.box.login-bg .box-title {
+	font-size: 36px;
+	margin: 0;
+}
+.box.login-bg .btn-join {
+	margin: 10px auto;
+	padding: 0 20px;
+}

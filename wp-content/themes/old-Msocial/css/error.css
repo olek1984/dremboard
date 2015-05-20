@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Raleway Medium'), local('Raleway-Medium'), url(http://themes.googleusercontent.com/static/fonts/raleway/v6/CcKI4k9un7TZVWzRVT-T873hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(http://themes.googleusercontent.com/static/fonts/raleway/v6/-_Ctzj9b56b8RgXW8FArib3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+html {
+	height: 100%;
+}
+body,
+html {
+	margin: 0;
+	min-height: 100%;
+	padding: 0;
+}
+body {
+	background: #fff;
+	color: #888;
+	font-family: 'Raleway';
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 2;
+	min-height: 100%;
+	padding: 0;
+	word-wrap: break-word;
+}
+a {
+	-webkit-transition: background .3s cubic-bezier(.17, .67, .88, 1.25), color .2s linear;
+	-moz-transition: background .3s cubic-bezier(.17, .67, .88, 1.25), color .2s linear;
+	-o-transition: background .3s cubic-bezier(.17, .67, .88, 1.25), color .2s linear;
+	transition: background .3s cubic-bezier(.17, .67, .88, 1.25), color .2s linear;
+	color: #db4a37;
+	text-decoration: none;
+}
+a:active,
+a:focus,
+a:hover {
+	color: #272727;
+	text-decoration: none;
+}
+
+body > header,
+body > footer,
+section {
+	background: #272727;
+	margin: 0 auto;
+	padding: 0 50px;
+}
+
+body > header {
+	min-height: 64px;
+}
+section {
+	background: #db4a37;
+	color: #fff;
+	padding-bottom: 100px;
+}
+body > footer { 
+	background: #fff; 
+}
+h1 {
+	font-size: 52px;
+	font-weight: 300;
+	line-height: 1;
+	margin: 0;
+	padding: 72px 0 0;
+	text-transform: uppercase;
+}
+
+h1:after {
+	border-bottom: 1px solid #FFB1AE;
+	content: "";
+	display: block;
+	padding: 15px 0 0;
+	width: 100px;
+}
+/* Logo */
+a.cssLogo {
+	margin: 0;
+	padding: 0;
+	text-indent: -999em;
+	text-shadow: none;
+	width: 130px;
+	display: block;
+	margin: 0;
+}
+
+a.cssLogo {
+	background: transparent url('../images/logo.png') no-repeat 0 0;
+	/* You can specify there logo size and background */
+	height: 55px;
+	width: 145px;
+}
+
+a.textLogo {
+	color: #fff;
+	display: block;
+	font-size: 18px;
+	font-weight: 300;
+	height: auto;
+	letter-spacing: 2px;
+	line-height: 24px;
+	margin: 0;
+	overflow: hidden;
+	padding: 20px 5px;
+	text-align: left;
+	text-indent: 0;
+	text-transform: uppercase;
+	width: auto;
+}
+
+a.textLogo > span {
+	color: #db4a37;
+}
+
+a.textLogo small {
+	color: #f5f5f5;
+	font-size: 14px;
+	line-height: 20px;
+	margin-left: 10px;
+	text-align: center;
+}
+p {
+	font-size: 42px;
+	font-weight: 500;
+	line-height: 1;
+	margin: 12px 0 0;
+	text-transform: uppercase;
+}
+p.errorinfo {
+	font-size: 13px;
+	font-weight: 500;
+	padding: 50px 0;
+}
+
+@media (max-width: 600px) {
+	h1 { font-size: 25px; padding-top: 40px; }
+	p { font-size: 18px; }
+	section { padding-bottom: 40px; }
+	p.errorinfo { font-size: 11px; }
+}

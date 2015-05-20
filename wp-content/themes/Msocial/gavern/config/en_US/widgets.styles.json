@@ -1,0 +1,59 @@
+[
+	{
+		"name": "Light",
+		"css_class": "light",
+		"exclude": "widget_gk_comments"
+	},
+	{
+		"name": "Dark",
+		"css_class": "dark",
+		"exclude": "widget_gk_comments"
+	},
+	{
+		"name": "Color",
+		"css_class": "color",
+		"exclude": "widget_gk_comments"
+	},
+	{
+		"name": "Color title",
+		"css_class": "colortitle"
+	},
+	{
+		"name": "Menu",
+		"css_class": "menu"
+	},
+	{
+		"name": "Advertisement",
+		"css_class": "advertisement"
+	},
+	{
+		"name": "Big title",
+		"css_class": "bigtitle"
+	},
+	{
+		"name": "Medium title",
+		"css_class": "mediumtitle"
+	},
+	{
+		"name": "White title",
+		"css_class": "whitetitle"
+	},
+	{
+		"name": "Grey Background",
+		"css_class": "greybg"
+	},
+	{
+		"name": "Centered",
+		"css_class": "centered"
+	},
+	{
+		"name": "Headlines",
+		"css_class": "headlines",
+		"for_only": "widget_gk_nsp"
+	},
+	{
+		"name": "Unified style",
+		"css_class": "tags",
+		"for_only": "tag_cloud"
+	}
+]

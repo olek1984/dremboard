@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 14, 2015, 2:47:46 PM
+    Author     : jinxinzhi
+*/
+.gk-bp-trend-drems {
+    overflow: auto;
+    height: 300px;
+}
+
+.gk-bp-trend-drems .trend-drem {
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0 10px 0 10px;
+}
+
+.gk-bp-trend-drems .trend-drem:hover {
+    background: #eee;
+}
+
+.gk-bp-trend-drems .trend-drem .sub-media{
+    display: none;
+}
+
+.gk-bp-trend-drems .trend-drem:hover .sub-media{
+    display: block;
+}
+
+.gk-bp-trend-drems .trend-drem .title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #186291;
+}
+
+.gk-bp-trend-drems .trend-drem .trend-info {
+    font-size: 11px;
+    color: #555;
+}
+
+.gk-bp-trend-drems .trend-drem .trend-info div {
+    display: inline;
+    margin-left: 20px;
+}
+
+.gk-bp-trend-drems .trend-drem .content {
+    max-height: 40px;
+    overflow: hidden;
+    margin-top: 0px;
+    font-size: 11px;
+    line-height: 1.2em;
+    color: black;
+}
+
+.gk-bp-trend-drems .see-more {
+    cursor: pointer;
+}
+

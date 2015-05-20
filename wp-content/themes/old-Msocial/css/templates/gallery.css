@@ -1,0 +1,95 @@
+/**
+ *
+ * -------------------------------------------
+ * Stylesheet for the template.gallery.php page style
+ * -------------------------------------------
+ * 
+ **/
+ 
+.gallery-page .intro {
+	padding: 20px 0;
+}
+#gallery {
+	margin: 10px 0;
+	overflow: hidden;
+	position: relative;
+}
+#gallery figure {
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+#gallery figure.active {
+	opacity: 1;
+	position: relative;
+	z-index: 3;
+}
+#gallery img {
+	display: block;
+	height: auto;
+	position: relative;
+	width: 100%;
+}
+#gallery figcaption {
+	background: rgba(255,255,255,0.8);  
+	bottom: -100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 15px;
+	padding: 26px;
+	position: absolute;
+	-webkit-transition: bottom 0.5s ease-out;
+	-moz-transition: bottom 0.5s ease-out;
+	-ms-transition: bottom 0.5s ease-out;
+	-o-transition: bottom 0.5s ease-out;
+	transition: bottom 0.5s ease-out;
+	width: 100%;
+	z-index: 2;
+}
+#gallery figure.active figcaption {
+	bottom: 0;	
+	z-index: 4;
+}
+#gallery figcaption h3 {
+	font-weight: 300;
+	margin: 0;
+}
+#gallery figcaption p {
+	line-height: 1.6;
+	margin: 0.6em 0 0;
+}
+#gallery ol {
+	left: 27px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 26px;
+	width: 100%;
+	z-index: 10;
+}
+#gallery ol li {
+	background: #fff;
+	border: 1px solid #eee;
+	cursor: pointer;
+	display: inline-block;
+	height: 15px;
+	margin: 0!important;
+	text-indent: -999px;
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 15px;
+}
+#gallery ol li:hover,
+#gallery ol li.active {
+	background: #db4a37;
+	border: 1px solid #db4a37;
+}

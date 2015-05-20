@@ -1,0 +1,27 @@
+[
+	{
+		"groupname": "Navigation Settings",
+		"groupdesc": "Configure theme navigation parameters.",
+		"fields": [
+			{
+				"name": "menu_type",
+				"type": "Select",
+				"label": "Mainmenu type",
+				"tooltip": "Please select the type of the main menu",
+				"default": "overlay",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"overlay": "Overlay menu",
+						"classic": "Classic menu"
+					}
+				}
+			},
+			{
+				"name": "menu",
+				"type": "Menu"
+			}
+		]
+	}
+]
