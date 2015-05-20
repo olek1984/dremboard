@@ -411,7 +411,496 @@ function bp_notifications_get_notifications_for_user( $user_id, $format = 'strin
 		$notification = $notifications[$i];
 		$grouped_notifications[$notification->component_name][$notification->component_action][] = $notification;
         }
+	// Bail if no notification groups
+	if ( empty( $grouped_notifications ) ) {
+		return false;
+	}
 
+	// Calculate a renderable output for each notification type
+	foreach ( $grouped_notifications as $component_name => $action_arrays ) {
+
+		// Skip if group is empty
+		if ( empty( $action_arrays ) ) {
+			continue;
+		}
+
+		// Loop through each actionable item and try to map it to a component
+		foreach ( (array) $action_arrays as $component_action_name => $component_action_items ) {
+
+			if ($component_action_name == 'new_like')
+                        {
+                            $action_item_count = count( $component_action_items );
+                            for ($i=0; $i<$action_item_count;$i++)
+                            {
+                                $liked_notification = $component_action_items[$i];
+                                $grouped_liked_notification[$liked_notification->item_id][] = $liked_notification;
+                            }
+                            foreach($grouped_liked_notification as $liked_item_ids)
+                            {
+                                $liked_item_count = count($liked_item_ids);
+                                
+                                // Skip if the count is less than 1
+                                if ( $liked_item_count < 1 ) {
+                                        continue;
+                                }
+
+                                // Callback function exists
+                                if ( isset( $bp->{$component_name}->notification_callback ) && is_callable( $bp->{$component_name}->notification_callback ) ) {
+
+                                        // Function should return an object
+                                        if ( 'object' === $format ) {
+
+                                                // Retrieve the content of the notification using the callback
+                                                $content = call_user_func(
+                                                        $bp->{$component_name}->notification_callback,
+                                                        $component_action_name,
+                                                        $liked_item_ids[0]->item_id,
+                                                        $liked_item_ids[0]->secondary_item_id,
+                                                        $liked_item_count,
+                                                        'array'
+                                                        //'string'
+                                                );
+
+
+                                                // Create the object to be returned
+                                                $notification_object = new stdClass;
+
+                                                // Minimal backpat with non-compatible notification
+                                                // callback functions
+                                                if ( is_string( $content ) ) {
+                                                        $notification_object->content = $content;
+                                                        $notification_object->href    = bp_loggedin_user_domain();
+                                                } else {
+                                                        $notification_object->content = $content['text'];
+                                                        $notification_object->href    = $content['link'];
+                                                }
+
+                                                $notification_object->id = $liked_item_ids[0]->id;
+                                                $renderable[]            = $notification_object;
+
+                                        // Return an array of content strings
+                                        } else {
+                                                $content      = call_user_func( $bp->{$component_name}->notification_callback, $component_action_name, $liked_item_ids[0]->item_id, $liked_item_ids[0]->secondary_item_id, $liked_item_count );
+                                                $renderable[] = $content;
+                                        }
+
+                                // @deprecated format_notification_function - 1.5
+                                } elseif ( isset( $bp->{$component_name}->format_notification_function ) && function_exists( $bp->{$component_name}->format_notification_function ) ) {
+                                        $renderable[] = call_user_func( $bp->{$component_name}->format_notification_function, $component_action_name, $liked_item_ids[0]->item_id, $liked_item_ids[0]->secondary_item_id, $liked_item_count );
+
+                                // Allow non BuddyPress components to hook in
+                                } else {
+
+                                        // The array to reference with apply_filters_ref_array()
+                                        $ref_array = array(
+                                                $component_action_name,
+                                                $liked_item_ids[0]->item_id,
+                                                $liked_item_ids[0]->secondary_item_id,
+                                                $liked_item_count,
+                                                $format
+                                        );
+
+                                        // Function should return an object
+                                        if ( 'object' === $format ) {
+
+                                                // Retrieve the content of the notification using the callback
+                                                $content = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+
+                                                // Create the object to be returned
+                                                $notification_object = new stdClass;
+
+                                                // Minimal backpat with non-compatible notification
+                                                // callback functions
+                                                if ( is_string( $content ) ) {
+                                                        $notification_object->content = $content;
+                                                        $notification_object->href    = bp_loggedin_user_domain();
+                                                } else {
+                                                        $notification_object->content = $content['text'];
+                                                        $notification_object->href    = $content['link'];
+                                                }
+
+                                                $notification_object->id = $liked_item_ids[0]->id;
+                                                $renderable[]            = $notification_object;
+
+                                        // Return an array of content strings
+                                        } else {
+                                                $renderable[] = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+                                        }
+                                }
+
+                            }
+                            //error_log(print_r($grouped_liked_notification, true));
+                            
+                        }
+                        else
+                        {
+                            // Get the number of actionable items
+                            $action_item_count = count( $component_action_items );
+                            // Skip if the count is less than 1
+                            if ( $action_item_count < 1 ) {
+                                    continue;
+                            }
+
+                            // Callback function exists
+                            if ( isset( $bp->{$component_name}->notification_callback ) && is_callable( $bp->{$component_name}->notification_callback ) ) {
+
+                                    // Function should return an object
+                                    if ( 'object' === $format ) {
+
+                                            // Retrieve the content of the notification using the callback
+                                            $content = call_user_func(
+                                                    $bp->{$component_name}->notification_callback,
+                                                    $component_action_name,
+                                                    $component_action_items[0]->item_id,
+                                                    $component_action_items[0]->secondary_item_id,
+                                                    $action_item_count,
+                                                    'array'
+                                                    //'string'
+                                            );
+
+
+                                            // Create the object to be returned
+                                            $notification_object = new stdClass;
+
+                                            // Minimal backpat with non-compatible notification
+                                            // callback functions
+                                            if ( is_string( $content ) ) {
+                                                    $notification_object->content = $content;
+                                                    $notification_object->href    = bp_loggedin_user_domain();
+                                            } else {
+                                                    $notification_object->content = $content['text'];
+                                                    $notification_object->href    = $content['link'];
+                                            }
+
+                                            $notification_object->id = $component_action_items[0]->id;
+                                            $renderable[]            = $notification_object;
+
+                                    // Return an array of content strings
+                                    } else {
+                                            $content      = call_user_func( $bp->{$component_name}->notification_callback, $component_action_name, $component_action_items[0]->item_id, $component_action_items[0]->secondary_item_id, $action_item_count );
+                                            $renderable[] = $content;
+                                    }
+
+                            // @deprecated format_notification_function - 1.5
+                            } elseif ( isset( $bp->{$component_name}->format_notification_function ) && function_exists( $bp->{$component_name}->format_notification_function ) ) {
+                                    $renderable[] = call_user_func( $bp->{$component_name}->format_notification_function, $component_action_name, $component_action_items[0]->item_id, $component_action_items[0]->secondary_item_id, $action_item_count );
+
+                            // Allow non BuddyPress components to hook in
+                            } else {
+
+                                    // The array to reference with apply_filters_ref_array()
+                                    $ref_array = array(
+                                            $component_action_name,
+                                            $component_action_items[0]->item_id,
+                                            $component_action_items[0]->secondary_item_id,
+                                            $action_item_count,
+                                            $format
+                                    );
+
+                                    // Function should return an object
+                                    if ( 'object' === $format ) {
+
+                                            // Retrieve the content of the notification using the callback
+                                            $content = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+
+                                            // Create the object to be returned
+                                            $notification_object = new stdClass;
+
+                                            // Minimal backpat with non-compatible notification
+                                            // callback functions
+                                            if ( is_string( $content ) ) {
+                                                    $notification_object->content = $content;
+                                                    $notification_object->href    = bp_loggedin_user_domain();
+                                            } else {
+                                                    $notification_object->content = $content['text'];
+                                                    $notification_object->href    = $content['link'];
+                                            }
+
+                                            $notification_object->id = $component_action_items[0]->id;
+                                            $renderable[]            = $notification_object;
+
+                                    // Return an array of content strings
+                                    } else {
+                                            $renderable[] = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+                                    }
+                            }
+                            
+                        }
+		}
+	}
+
+	// If renderable is empty array, set to false
+	if ( empty( $renderable ) ) {
+		$renderable = false;
+	}
+
+	// Filter and return
+	return apply_filters( 'bp_core_get_notifications_for_user', $renderable, $user_id, $format );
+}
+
+function bp_notifications_get_all_notifications_for_user( $user_id, $format = 'string' ) {
+
+	// Setup local variables
+	$bp                    = buddypress();
+	$notifications_unread  = BP_Notifications_Notification::get( array(
+		'user_id' => $user_id
+	) );
+        $notifications_read    = BP_Notifications_Notification::get( array(
+		'user_id' => $user_id,
+                'is_new' => false
+	) );
+        $notifications = array_merge_recursive($notifications_unread, $notifications_read);
+	$grouped_notifications = array(); // Notification groups
+	$renderable            = array(); // Renderable notifications
+
+	// Group notifications by component and component_action and provide totals
+	for ( $i = 0, $count = count( $notifications ); $i < $count; ++$i ) {
+		$notification = $notifications[$i];
+		$grouped_notifications[$notification->component_name][$notification->component_action][] = $notification;
+        }
+	// Bail if no notification groups
+	if ( empty( $grouped_notifications ) ) {
+		return false;
+	}
+
+	// Calculate a renderable output for each notification type
+	foreach ( $grouped_notifications as $component_name => $action_arrays ) {
+
+		// Skip if group is empty
+		if ( empty( $action_arrays ) ) {
+			continue;
+		}
+
+		// Loop through each actionable item and try to map it to a component
+		foreach ( (array) $action_arrays as $component_action_name => $component_action_items ) {
+
+			if ($component_action_name == 'new_like')
+                        {
+                            $action_item_count = count( $component_action_items );
+                            for ($i=0; $i<$action_item_count;$i++)
+                            {
+                                $liked_notification = $component_action_items[$i];
+                                $grouped_liked_notification[$liked_notification->item_id][] = $liked_notification;
+                            }
+                            foreach($grouped_liked_notification as $liked_item_ids)
+                            {
+                                $liked_item_count = count($liked_item_ids);
+                                
+                                // Skip if the count is less than 1
+                                if ( $liked_item_count < 1 ) {
+                                        continue;
+                                }
+
+                                // Callback function exists
+                                if ( isset( $bp->{$component_name}->notification_callback ) && is_callable( $bp->{$component_name}->notification_callback ) ) {
+
+                                        // Function should return an object
+                                        if ( 'object' === $format ) {
+
+                                                // Retrieve the content of the notification using the callback
+                                                $content = call_user_func(
+                                                        $bp->{$component_name}->notification_callback,
+                                                        $component_action_name,
+                                                        $liked_item_ids[0]->item_id,
+                                                        $liked_item_ids[0]->secondary_item_id,
+                                                        $liked_item_count,
+                                                        'array'
+                                                        //'string'
+                                                );
+
+
+                                                // Create the object to be returned
+                                                $notification_object = new stdClass;
+
+                                                // Minimal backpat with non-compatible notification
+                                                // callback functions
+                                                if ( is_string( $content ) ) {
+                                                        $notification_object->content = $content;
+                                                        $notification_object->href    = bp_loggedin_user_domain();
+                                                } else {
+                                                        $notification_object->content = $content['text'];
+                                                        $notification_object->href    = $content['link'];
+                                                }
+
+                                                $notification_object->id = $liked_item_ids[0]->id;
+                                                $renderable[]            = $notification_object;
+
+                                        // Return an array of content strings
+                                        } else {
+                                                $content      = call_user_func( $bp->{$component_name}->notification_callback, $component_action_name, $liked_item_ids[0]->item_id, $liked_item_ids[0]->secondary_item_id, $liked_item_count );
+                                                $renderable[] = $content;
+                                        }
+
+                                // @deprecated format_notification_function - 1.5
+                                } elseif ( isset( $bp->{$component_name}->format_notification_function ) && function_exists( $bp->{$component_name}->format_notification_function ) ) {
+                                        $renderable[] = call_user_func( $bp->{$component_name}->format_notification_function, $component_action_name, $liked_item_ids[0]->item_id, $liked_item_ids[0]->secondary_item_id, $liked_item_count );
+
+                                // Allow non BuddyPress components to hook in
+                                } else {
+
+                                        // The array to reference with apply_filters_ref_array()
+                                        $ref_array = array(
+                                                $component_action_name,
+                                                $liked_item_ids[0]->item_id,
+                                                $liked_item_ids[0]->secondary_item_id,
+                                                $liked_item_count,
+                                                $format
+                                        );
+
+                                        // Function should return an object
+                                        if ( 'object' === $format ) {
+
+                                                // Retrieve the content of the notification using the callback
+                                                $content = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+
+                                                // Create the object to be returned
+                                                $notification_object = new stdClass;
+
+                                                // Minimal backpat with non-compatible notification
+                                                // callback functions
+                                                if ( is_string( $content ) ) {
+                                                        $notification_object->content = $content;
+                                                        $notification_object->href    = bp_loggedin_user_domain();
+                                                } else {
+                                                        $notification_object->content = $content['text'];
+                                                        $notification_object->href    = $content['link'];
+                                                }
+
+                                                $notification_object->id = $liked_item_ids[0]->id;
+                                                $renderable[]            = $notification_object;
+
+                                        // Return an array of content strings
+                                        } else {
+                                                $renderable[] = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+                                        }
+                                }
+
+                            }
+                            //error_log(print_r($grouped_liked_notification, true));
+                            
+                        }
+                        else
+                        {
+                            // Get the number of actionable items
+                            $action_item_count = count( $component_action_items );
+                            // Skip if the count is less than 1
+                            if ( $action_item_count < 1 ) {
+                                    continue;
+                            }
+
+                            // Callback function exists
+                            if ( isset( $bp->{$component_name}->notification_callback ) && is_callable( $bp->{$component_name}->notification_callback ) ) {
+
+                                    // Function should return an object
+                                    if ( 'object' === $format ) {
+
+                                            // Retrieve the content of the notification using the callback
+                                            $content = call_user_func(
+                                                    $bp->{$component_name}->notification_callback,
+                                                    $component_action_name,
+                                                    $component_action_items[0]->item_id,
+                                                    $component_action_items[0]->secondary_item_id,
+                                                    $action_item_count,
+                                                    'array'
+                                                    //'string'
+                                            );
+
+
+                                            // Create the object to be returned
+                                            $notification_object = new stdClass;
+
+                                            // Minimal backpat with non-compatible notification
+                                            // callback functions
+                                            if ( is_string( $content ) ) {
+                                                    $notification_object->content = $content;
+                                                    $notification_object->href    = bp_loggedin_user_domain();
+                                            } else {
+                                                    $notification_object->content = $content['text'];
+                                                    $notification_object->href    = $content['link'];
+                                            }
+
+                                            $notification_object->id = $component_action_items[0]->id;
+                                            $renderable[]            = $notification_object;
+
+                                    // Return an array of content strings
+                                    } else {
+                                            $content      = call_user_func( $bp->{$component_name}->notification_callback, $component_action_name, $component_action_items[0]->item_id, $component_action_items[0]->secondary_item_id, $action_item_count );
+                                            $renderable[] = $content;
+                                    }
+
+                            // @deprecated format_notification_function - 1.5
+                            } elseif ( isset( $bp->{$component_name}->format_notification_function ) && function_exists( $bp->{$component_name}->format_notification_function ) ) {
+                                    $renderable[] = call_user_func( $bp->{$component_name}->format_notification_function, $component_action_name, $component_action_items[0]->item_id, $component_action_items[0]->secondary_item_id, $action_item_count );
+
+                            // Allow non BuddyPress components to hook in
+                            } else {
+
+                                    // The array to reference with apply_filters_ref_array()
+                                    $ref_array = array(
+                                            $component_action_name,
+                                            $component_action_items[0]->item_id,
+                                            $component_action_items[0]->secondary_item_id,
+                                            $action_item_count,
+                                            $format
+                                    );
+
+                                    // Function should return an object
+                                    if ( 'object' === $format ) {
+
+                                            // Retrieve the content of the notification using the callback
+                                            $content = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+
+                                            // Create the object to be returned
+                                            $notification_object = new stdClass;
+
+                                            // Minimal backpat with non-compatible notification
+                                            // callback functions
+                                            if ( is_string( $content ) ) {
+                                                    $notification_object->content = $content;
+                                                    $notification_object->href    = bp_loggedin_user_domain();
+                                            } else {
+                                                    $notification_object->content = $content['text'];
+                                                    $notification_object->href    = $content['link'];
+                                            }
+
+                                            $notification_object->id = $component_action_items[0]->id;
+                                            $renderable[]            = $notification_object;
+
+                                    // Return an array of content strings
+                                    } else {
+                                            $renderable[] = apply_filters_ref_array( 'bp_notifications_get_notifications_for_user', $ref_array );
+                                    }
+                            }
+                            
+                        }
+		}
+	}
+
+	// If renderable is empty array, set to false
+	if ( empty( $renderable ) ) {
+		$renderable = false;
+	}
+
+	// Filter and return
+	return apply_filters( 'bp_core_get_notifications_for_user', $renderable, $user_id, $format );
+}
+
+function bp_notifications_get_read_notifications_for_user( $user_id, $format = 'string' ) {
+
+	// Setup local variables
+	$bp                    = buddypress();
+        $notifications    = BP_Notifications_Notification::get( array(
+		'user_id' => $user_id,
+                'is_new' => false
+	) );
+	$grouped_notifications = array(); // Notification groups
+	$renderable            = array(); // Renderable notifications
+
+	// Group notifications by component and component_action and provide totals
+	for ( $i = 0, $count = count( $notifications ); $i < $count; ++$i ) {
+		$notification = $notifications[$i];
+		$grouped_notifications[$notification->component_name][$notification->component_action][] = $notification;
+        }
 	// Bail if no notification groups
 	if ( empty( $grouped_notifications ) ) {
 		return false;

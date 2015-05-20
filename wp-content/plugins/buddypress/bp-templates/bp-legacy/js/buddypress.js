@@ -1788,6 +1788,128 @@ function init_edit_activity_submit(){
 }
 
 var notifications = Array();
+/*
+function init_notification_inform(){
+    var notification_menu = jQuery("#wp-admin-bar-bp-notifications");
+    var new_notification_menu = jQuery("#gk-user-notification");
+    if (notification_menu.length != 0){
+        jQuery("a.ab-item:first", notification_menu).click(function(){
+            bp_activity_set_scope("notifications");
+            return false;
+        });
+    }
+    
+    if (notification_menu.length != 0 && new_notification_menu.length != 0){
+        new_notification_menu.append(notification_menu.html());
+
+        var new_nt_container = jQuery("<div class = 'new_nt_container'></div>");
+        var dropdownlist = jQuery("<select id = 'dropdownlist' class = 'dropdownlist' onchange='window.location.href=this.value;'></select>");
+        var new_nt_item_list = jQuery('#gk-user-notification li a.ab-item');
+        var new_nt_count = new_nt_item_list.length;
+        var new_nt_item = '';
+        var href_link = '';
+        var href_notification = '';
+        
+        if (new_nt_count > 0){
+            if (new_nt_count == 1) {
+                if (new_nt_item_list.html() !== "No new notifications") {
+                    new_nt_item = jQuery("<option class = 'new_nt_option' > -- Notifications --</option>");
+                    dropdownlist.append(new_nt_item);
+                }
+            } else {
+                new_nt_item = jQuery("<option class = 'new_nt_option' > -- Notifications --</option>");
+                dropdownlist.append(new_nt_item);
+            }
+        }
+        
+        new_nt_item_list.each(function() {
+            href_link = this.href;
+            href_notification = this.text;
+            new_nt_item = jQuery("<option class = 'new_nt_option' value='" + href_link + "'>" + href_notification +"</option>");
+            dropdownlist.append(new_nt_item);
+        });
+//        for (var i=0; i < new_nt_count; i++)
+//        {
+//            href_link = new_nt_item_list[i].getAttribute('href');
+//            new_nt_item = jQuery("<option value='" + href_link + "'>" + href_notification +"</option>");
+//            dropdownlist.append(new_nt_item);
+//        }
+        new_nt_container.append(dropdownlist);
+        jQuery("#gk-top").append(new_nt_container);
+        var styles = {opacity:'0',position:'absolute', left:'0', top:'0'};
+        jQuery('.dropdownlist').css(styles);
+        showDropDown = function(elem) {
+            if (document.createEvent) {
+                var event = document.createEvent("MouseEvents");
+                event.initMouseEvent("mousedown", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                elem[0].dispatchEvent(event);
+            } else if (element.fireEvent) {
+                elem[0].fireEvent("onmousedown");
+            }
+        }
+        jQuery("a.ab-item:first", new_notification_menu).click(function(){
+            //bp_activity_set_scope("notifications");
+            showDropDown(jQuery('#dropdownlist'));
+            return false;
+        });
+    }
+    
+	if((jQuery("#gk-bg").hasClass("mobile")) || jQuery("body.logged-in").length == 0)
+		return false;
+	// ready for show notifications.
+	var nt_logo = jQuery("<div class='nt_logo'></div>");
+	var nt_logo_img = jQuery("<div class='nt_logo_img'></div>");
+	var nt_content = jQuery("<div class='nt_content'></div>");
+	var nt_desc = jQuery("<div class='nt_content'></div>");
+	var nt_since = jQuery("<div class='nt_since'></div>");
+	var nt_container = jQuery("<div class='nt_container'></div>");
+	var nt_close = jQuery("<div class='nt_close'>X</div>");
+	
+	nt_content.append(nt_desc).append(nt_since);
+	nt_container.append(nt_logo).append(nt_content).append(nt_close);
+	nt_container.hide();
+	var body = jQuery("body");
+	body.append(nt_container);
+	
+	nt_close.click(function(){
+		nt_container.animate({ height: 'hide', opacity: 'hide' }, 'slow');
+	});
+	
+	//var emptyArray = Array();
+	//localStorage.setItem('nt_ids', JSON.stringify(emptyArray));
+	
+	get_notification_inform();
+	
+	setInterval(get_notification_inform, 100000);
+	
+	setInterval(function(){
+		nt_container.hide({duration: 1000, queue: true});
+		var i;
+		for (i = 0; i < notifications.length; i++){
+			var notification = notifications[i];
+			if (notification.is_popupped !== true)
+                        {
+                            if(notification.show !== true){
+                                    nt_desc.html(notification.desc);
+
+                                    nt_logo.html(notification.desc);
+                                    jQuery("a", nt_logo).html("");
+                                    jQuery("a", nt_logo).append(nt_logo_img);
+
+                                    nt_since.html(notification.since);
+                                    notification.show = true;
+                                    nt_container.show({duration: 1000, queue: true})
+                                    var showed_nt = JSON.parse(localStorage.getItem('nt_ids'));
+                                    showed_nt.push(notification.id);
+                                    localStorage.setItem('nt_ids', JSON.stringify(showed_nt));
+                                    break;
+                            }
+                        }
+		}
+	}, 10000);
+}
+*/
+
 function init_notification_inform(){
     var notification_menu = jQuery("#wp-admin-bar-bp-notifications");
     var new_notification_menu = jQuery("#gk-user-notification");
