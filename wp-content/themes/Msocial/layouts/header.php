@@ -90,10 +90,11 @@
         <!-- added 
         <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/1.3.0/assets/css/emojione.min.css" />
         <script src="//cdn.jsdelivr.net/emojione/1.3.0/lib/js/emojione.min.js"></script>
+        <script type='text/javascript' src = '<?php echo BP_PLUGIN_URL . 'jQuery-slimScroll-1.1.0/jquery.slimscroll.min.js' ?>'></script>
         -->
         <link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'emojione/assets/css/emojione.min.css' ?>' type='text/css'/>
         <script type='text/javascript' src = '<?php echo BP_PLUGIN_URL . 'emojione/lib/js/emojione.min.js' ?>'></script>
-        
+        <script type='text/javascript' src = '<?php echo gavern_file_uri('js/jquery.slimscroll.js') ?>'></script>
 </head>
 <body <?php do_action('gavernwp_body_attributes'); ?> <?php body_class(); ?>>	
 <div id="fb-root"></div>
@@ -104,6 +105,7 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=502873843121201&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="gk-bg" class="<?php echo(wp_is_mobile())?'mobile':'' ?>">
 	<div id="gk-content-wrapper" class="gk-page">	
 	
