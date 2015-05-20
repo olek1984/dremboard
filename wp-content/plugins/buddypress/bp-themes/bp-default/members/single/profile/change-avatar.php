@@ -1,4 +1,4 @@
-<h4><?php _e( 'Change Avatar', 'buddypress' ); ?></h4>
+<h4><?php _e( 'Change Profile Picture', 'buddypress' ); ?></h4>
 
 <?php do_action( 'bp_before_profile_avatar_upload_content' ); ?>
 
