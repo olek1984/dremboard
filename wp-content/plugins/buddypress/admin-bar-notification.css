@@ -1,9 +1,9 @@
 #wpadminbar .quicklinks #wp-admin-bar-bp-notifications a, #wpadminbar .quicklinks .ab-empty-item , #wpadminbar .shortlink-input {
-  line-height: 14px;
+  line-height: 18px;
 }
 
 #wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab a{
-  line-height: 14px;
+  line-height: 18px;
   color:#FFF;
 }
 
@@ -30,7 +30,7 @@
 
 #wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab-default li {
   float: none;
-  margin: 0 5px;
+  margin: 5px;
 }
 
 #wpadminbar .quicklinks li#wp-admin-bar-bp-notifications-read #ab-pending-notifications.alert {
@@ -78,6 +78,7 @@ img.avatar.user-42-avatar.avatar-25.photo {
 
 #wpadminbar .notification.message {
   width:180px;
+  height:40px;
   margin-left: 15px;
 }
 
@@ -163,8 +164,8 @@ img.avatar.user-42-avatar.avatar-25.photo {
 
 #wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-tab-default ul li .ab-item {
   height:50px;
-  padding-top:3px;
-  padding-bottom:3px;
+  padding-top:8px;
+  padding-bottom:2px;
 }
 
 #wpadminbar span.username {
