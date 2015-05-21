@@ -109,15 +109,17 @@
 
 <script type="text/javascript">
 jQuery( document ).ready( function() {
-    jQuery('#wp-admin-bar-bp-notifications-read-default li').each(function(){
+    jQuery('#wp-admin-bar-bp-notifications-default li').each(function(){
         var readID = this.id;
+        var read_tag = jQuery('#'+readID);
         var pos = readID.lastIndexOf('-');
         readID = readID.slice(pos+1);
-        var prompt = jQuery('#wp-admin-bar-notification-all-'+readID);
-        prompt.css("background-color","#4D4D4D");
+        if (readID == '1'){
+	        read_tag.css("background-color","#4D4D4D");
+        }
     });
 
-    var tempTag = jQuery('ul#wp-admin-bar-bp-notifications-tab-default .ab-sub-wrapper ul');
+    var tempTag = jQuery('li#wp-admin-bar-bp-notifications .ab-sub-wrapper ul');
     tempTag.slimScroll({
         height: '420px'
     });

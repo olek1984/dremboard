@@ -67,8 +67,8 @@ function bp_notifications_all_toolbar_menu() {
         return false;
     }
 
-    $notifications = bp_notifications_get_notifications_for_user(bp_loggedin_user_id(), 'object');
-    $count = !empty($notifications) ? count($notifications) : 0;
+    $notifications_unread = bp_notifications_get_notifications_for_user(bp_loggedin_user_id(), 'object');
+    $count = !empty($notifications_unread) ? count($notifications_unread) : 0;
     $alert_class = (int) $count > 0 ? 'pending-count alert' : 'count no-alert';
     $menu_title = '<span id="ab-pending-notifications" class="' . $alert_class . '">' .number_format_i18n($count) . '</span>';
     $menu_link = trailingslashit(home_url());
@@ -76,117 +76,43 @@ function bp_notifications_all_toolbar_menu() {
     // Add the top-level Notifications button
     $wp_admin_bar->add_menu(array(
         'parent' => 'top-secondary',
-        'id' => 'bp-notifications-tab',
+        'id' => 'bp-notifications',
         'title' => $menu_title,
         'href' => $menu_link,
     ));
 
-    // Add the Notifications tabs
-    $tab_title = 'All';
-    $tab_link = '';
-    $wp_admin_bar->add_menu(array(
-        'parent' => 'bp-notifications-tab',
-        'id' => 'bp-notifications-all',
-        'title' => $tab_title,
-        'href' => $tab_link,
-    ));
-
-    $notifications = bp_notifications_get_all_notifications_for_user(bp_loggedin_user_id(), 'object');
-    
-    if (!empty($notifications)) {
-        foreach ((array) $notifications as $notification) {
+    if (!empty($notifications_unread)) {
+        foreach ((array) $notifications_unread as $notification) {
             $wp_admin_bar->add_menu(array(
-                'parent' => 'bp-notifications-all',
-                'id' => 'notification-all-' . $notification->id,
+                'parent' => 'bp-notifications',
+                'id' => 'notification-' . $notification->id.'-0',
                 'title' => $notification->content,
                 'href' => $notification->href,
             ));
         }
     }
-    else {
-        $wp_admin_bar->add_menu(array(
-            'parent' => 'bp-notifications-all',
-            'id' => 'no-notifications-all',
-            'title' => __('No any notifications', 'buddypress'),
-            'href' => $menu_link,
-        ));
-    }
 
-    $tab_title = 'Mark as Read...';
-    $tab_link = '';
-    $wp_admin_bar->add_menu(array(
-        'parent' => 'bp-notifications-tab',
-        'id' => 'bp-notifications-read',
-        'title' => $tab_title,
-        'href' => $tab_link,
-    ));
-
-    $notifications = bp_notifications_get_read_notifications_for_user(bp_loggedin_user_id(), 'object');
-    if (!empty($notifications)) {
-        foreach ((array) $notifications as $notification) {
+    $notifications_read = bp_notifications_get_read_notifications_for_user(bp_loggedin_user_id(), 'object');
+    if (!empty($notifications_read)) {
+        foreach ((array) $notifications_read as $notification) {
             
             $wp_admin_bar->add_menu(array(
-                'parent' => 'bp-notifications-read',
-                'id' => 'notification-read-' . $notification->id,
+                'parent' => 'bp-notifications',
+                'id' => 'notification-' . $notification->id.'-1',
                 'title' => $notification->content,
                 'href' => $notification->href,
             ));
         }
     }
-    else {
+    
+    if (empty($notifications_read) && empty($notifications_unread)){
         $wp_admin_bar->add_menu(array(
-            'parent' => 'bp-notifications-read',
-            'id' => 'no-notifications-read',
+            'parent' => 'bp-notifications',
+            'id' => 'no-notifications',
             'title' => __('No any notifications', 'buddypress'),
             'href' => $menu_link,
         ));
     }
-
-
-
-    return;
-}
-
-function bp_notifications_read_toolbar_menu() {
-    global $wp_admin_bar;
-
-    if (!is_user_logged_in()) {
-        return false;
-    }
-
-    $notifications = bp_notifications_get_read_notifications_for_user(bp_loggedin_user_id(), 'object');
-    $count = !empty($notifications) ? count($notifications) : 0;
-    $alert_class = (int) $count > 0 ? 'pending-count alert' : 'count no-alert';
-    $menu_title = '<span id="ab-pending-notifications" class="' . $alert_class . '">' .'Mark as Read '. number_format_i18n($count) . '</span>';
-    $menu_link = trailingslashit(home_url());
-
-    // Add the top-level Notifications button
-    $wp_admin_bar->add_menu(array(
-        'parent' => 'top-secondary',
-        'id' => 'bp-notifications-read',
-        'title' => $menu_title,
-        'href' => $menu_link,
-    ));
-
-    if (!empty($notifications)) {
-        foreach ((array) $notifications as $notification) {
-            $wp_admin_bar->add_menu(array(
-                'parent' => 'bp-notifications-read',
-                'id' => 'notification-' . $notification->id,
-                'title' => $notification->content,
-                'href' => $notification->href,
-            ));
-        }
-    }
-    else {
-        $wp_admin_bar->add_menu(array(
-            'parent' => 'bp-notifications-read',
-            'id' => 'no-notifications',
-            'title' => __('No read notifications', 'buddypress'),
-            'href' => $menu_link,
-        ));
-    }
-
     return;
 }
 add_action('admin_bar_menu', 'bp_members_admin_bar_notifications_menu', 90);

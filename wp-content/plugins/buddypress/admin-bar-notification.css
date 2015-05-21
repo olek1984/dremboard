@@ -1,54 +1,10 @@
+/*
 #wpadminbar .quicklinks #wp-admin-bar-bp-notifications a, #wpadminbar .quicklinks .ab-empty-item , #wpadminbar .shortlink-input {
   line-height: 18px;
 }
-
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab a{
-  line-height: 18px;
-  color:#FFF;
-}
-
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li a {
-  display: table-cell;
-}
-
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-all-default li a,
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-read-default li a {
-  display: table-cell;
-}
-
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li,
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-all-default li, 
-.ab-sub-wrapper ul#wp-admin-bar-bp-notifications-read-default li {
-  height: 56px;
-}
-
-#wpadminbar .ab-top-secondary .menupop .menupop>.ab-item {
-  padding-left: 2em;
-  padding-right: 1em;
-  padding-top: 0.3em;
-}
-
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab-default li {
-  float: none;
-  margin: 5px;
-}
-
-#wpadminbar .quicklinks li#wp-admin-bar-bp-notifications-read #ab-pending-notifications.alert {
+*/
+#wpadminbar .quicklinks li#wp-admin-bar-bp-notifications #ab-pending-notifications.alert {
   background-color: #1FB3DD;
-  color: #FFF;
-}
-
-#wpadminbar .quicklinks li#wp-admin-bar-bp-notifications-all #ab-pending-notifications.alert {
-  background-color: #1FB3DD;
-  color: #FFF;
-}
-
-#wpadminbar .quicklinks li#wp-admin-bar-bp-notifications-tab #ab-pending-notifications.alert {
-  background-color: #1FB3DD;
-  color: #FFF;
-}
-#wpadminbar .quicklinks li#wp-admin-bar-bp-notifications-tab #ab-pending-notifications {
-  background: #21759B;
   color: #FFF;
   text-shadow: none;
   display: inline;
@@ -58,114 +14,106 @@
   -moz-border-radius: 10px;
   -khtml-border-radius: 10px;
   -webkit-border-radius: 10px;
-  /* border-radius: 10px; */
+  border-radius: 10px;
+
 }
 
+#wpadminbar .quicklinks .ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li {
+  float: none;
+  margin: 5px;
+  height: 55px;
+}
+
+#wpadminbar .quicklinks .ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li a
+{
+  display: block;
+  line-height:20px;
+}
+
+/*
+#wpadminbar .ab-top-secondary .menupop .menupop>.ab-item {
+  padding-left: 2em;
+  padding-right: 1em;
+  padding-top: 0.3em;
+}
+*/
+
+/*
 img.avatar.user-42-avatar.avatar-25.photo {
   width: 45px;
 }
+*/
 
-#wpadminbar .notification.avatar {
+#wpadminbar .notification.avatar,#wpadminbar .notification.drem {
   max-width: 40px;
   max-height:40px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
   
-}
-
-#wpadminbar .notification.drem {
-  max-width: 40px;
-  max-height:40px;
 }
 
 #wpadminbar .notification.message {
   width:180px;
   height:40px;
   margin-left: 15px;
-}
-
-.notification.avatar, .notification.drem, .notification.message {
   display: inline-block;
 }
 
-#wpadminbar .notification.avatar{
-  margin-left:5px;
-  margin-right:5px;
-}
-
-#wpadminbar .notification.drem{
-  margin-left:5px;
-  margin-right:5px;
-}
-
-#wpadminbar .notification.avatar img, #wpadminbar .notification.drem img {
+#wpadminbar .notification.avatar img, 
+#wpadminbar .notification.drem img,
+#wpadminbar .notification.drem video {
   width: 40px;
   height: 40px;
+  border: 2px solid #7F7F7F;
 }
 
 #wpadminbar .notification.avatar img {
   border-radius: 50%;
   -khtml-border-radius: 50%;
-  border: 2px solid #7F7F7F;
 }
 
 #wpadminbar .notification.drem img {
   border-radius: 20%;
   -khtml-border-radius: 20%;
-  border: 2px solid #7F7F7F;
 }
 
 #wpadminbar .notification.drem video {
-  width: 40px;
-  height: 40px;
   border-radius: 20%;
   -khtml-border-radius: 20%;
-  border: 2px solid #7F7F7F;
-}
-/*
-#wp-admin-bar-bp-notifications-all .ab-sub-wrapper {
-  height: 415px;
-  overflow: scroll;
 }
 
-#wp-admin-bar-bp-notifications-read .ab-sub-wrapper {
-  height: 415px;
-  overflow: scroll;
-}
-*/
 #wpadminbar .quicklinks .menupop ul li .ab-item .ab-notification-item {
   white-space:normal;
   min-width:300px;
   margin:0px;
 }
 
-.notification.avatar.empty {
+#wpadminbar .notification.avatar.empty {
   opacity:0;
 }
 
-#wpadminbar .ab-top-secondary #wp-admin-bar-bp-notifications-tab-default .menupop .ab-sub-wrapper {
+#wpadminbar .ab-top-secondary #wp-admin-bar-bp-notifications-default {
   background-color: #333;
   border-radius:5px;
   border:2px solid #333;
 }
 
-#wp-admin-bar-bp-notifications-tab-default>li:hover>.ab-item{
-    background: #333;
+#wp-admin-bar-bp-notifications-default>li:hover>.ab-item{
     color: #2ea2cc;
 } 
 
 
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab #wp-admin-bar-bp-notifications-all-default>li>.ab-item>.ab-notification-item>.notification.message>a:hover,
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab #wp-admin-bar-bp-notifications-all-default>li>.ab-item>.ab-notification-item>.notification.message:hover>a,
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab #wp-admin-bar-bp-notifications-read-default>li>.ab-item>.ab-notification-item>.notification.message>a:hover,
-#wpadminbar .quicklinks #wp-admin-bar-bp-notifications-tab #wp-admin-bar-bp-notifications-read-default>li>.ab-item>.ab-notification-item>.notification.message:hover>a
+#wpadminbar .quicklinks #wp-admin-bar-bp-notifications #wp-admin-bar-bp-notifications-default>li>.ab-item>.ab-notification-item>.notification.message>a:hover,
+#wpadminbar .quicklinks #wp-admin-bar-bp-notifications #wp-admin-bar-bp-notifications-default>li>.ab-item>.ab-notification-item>.notification.message:hover>a
 {
     /*background: #6D84B4;*/
     color: #2ea2cc;
 }
 
-#wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-tab-default ul li .ab-item {
+#wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-default ul li .ab-item {
   height:50px;
   padding-top:8px;
-  padding-bottom:2px;
 }
 
 #wpadminbar span.username {
