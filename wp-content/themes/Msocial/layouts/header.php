@@ -94,7 +94,6 @@
         -->
         <link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'emojione/assets/css/emojione.min.css' ?>' type='text/css'/>
         <script type='text/javascript' src = '<?php echo BP_PLUGIN_URL . 'emojione/lib/js/emojione.min.js' ?>'></script>
-        <script type='text/javascript' src = '<?php echo gavern_file_uri('js/jquery.slimscroll.js') ?>'></script>
 </head>
 <body <?php do_action('gavernwp_body_attributes'); ?> <?php body_class(); ?>>	
 <div id="fb-root"></div>
@@ -105,7 +104,28 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=502873843121201&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'admin-bar-notification.css' ?>' type='text/css'/>
+<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
+<script type='text/javascript' src='<?php echo home_url();?>/wp-includes/js/jquery/jquery-ui.min.js'></script>
+<script type='text/javascript' src = '<?php echo BP_PLUGIN_URL . 'jQuery-slimScroll-1.1.0/jquery.slimscroll.min.js' ?>'></script>
 
+<script type="text/javascript">
+jQuery( document ).ready( function() {
+    jQuery('#wp-admin-bar-bp-notifications-read-default li').each(function(){
+        var readID = this.id;
+        var pos = readID.lastIndexOf('-');
+        readID = readID.slice(pos+1);
+        var prompt = jQuery('#wp-admin-bar-notification-all-'+readID);
+        prompt.css("background-color","#4D4D4D");
+    });
+
+    var tempTag = jQuery('ul#wp-admin-bar-bp-notifications-tab-default .ab-sub-wrapper ul');
+    tempTag.slimScroll({
+        height: '420px'
+    });
+    
+});
+</script>
 <div id="gk-bg" class="<?php echo(wp_is_mobile())?'mobile':'' ?>">
 	<div id="gk-content-wrapper" class="gk-page">	
 	

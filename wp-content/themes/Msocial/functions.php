@@ -191,7 +191,7 @@ function gavern_enqueue_admin_js_and_css() {
 	wp_enqueue_script('shortcodes.js', gavern_file_uri('gavern/config/'.$language.'/shortcodes.js'));
 	
         //jquery.slimscroll.js
-        wp_enqueue_script('jquery.slimscroll.js', gavern_file_uri('js/jquery.slimscroll.js'));
+        //wp_enqueue_script('jquery.slimscroll.js', gavern_file_uri('js/jquery.slimscroll.js'));
 }
 // this action enqueues scripts and styles: 
 // http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/
@@ -226,21 +226,4 @@ function goto_login_page() {
 <link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'admin-bar-notification.css' ?>' type='text/css'/>
 <script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
 
-<script type='text/javascript' src='<?php echo home_url();?>/wp-includes/js/jquery/jquery-ui.min.js'></script>
-<script type="text/javascript">
-jQuery( document ).ready( function() {
-    jQuery('#wp-admin-bar-bp-notifications-read-default li').each(function(){
-        var readID = this.id;
-        var pos = readID.lastIndexOf('-');
-        readID = readID.slice(pos+1);
-        var prompt = jQuery('#wp-admin-bar-notification-all-'+readID);
-        prompt.css("background-color","#4D4D4D");
-    });
-
-    var tempTag = jQuery('ul#wp-admin-bar-bp-notifications-tab-default .ab-sub-wrapper ul');
-    tempTag.slimScroll({
-        height: '420px'
-    });
-    
-});
-</script>
+<script type='text/javascript' src='<?php echo site_url();?>/wp-includes/js/jquery/jquery-ui.min.js'></script>
