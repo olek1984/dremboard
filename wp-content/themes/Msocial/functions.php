@@ -189,9 +189,6 @@ function gavern_enqueue_admin_js_and_css() {
 	}
 	
 	wp_enqueue_script('shortcodes.js', gavern_file_uri('gavern/config/'.$language.'/shortcodes.js'));
-	
-        //jquery.slimscroll.js
-        //wp_enqueue_script('jquery.slimscroll.js', gavern_file_uri('js/jquery.slimscroll.js'));
 }
 // this action enqueues scripts and styles: 
 // http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/
@@ -223,7 +220,3 @@ function goto_login_page() {
     }
 }
 ?>
-<link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'admin-bar-notification.css' ?>' type='text/css'/>
-<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
-
-<script type='text/javascript' src='<?php echo site_url();?>/wp-includes/js/jquery/jquery-ui.min.js'></script>

@@ -105,8 +105,6 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <link rel='stylesheet' href = '<?php echo BP_PLUGIN_URL . 'admin-bar-notification.css' ?>' type='text/css'/>
-<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
-<script type='text/javascript' src='<?php echo home_url();?>/wp-includes/js/jquery/jquery-ui.min.js'></script>
 <script type='text/javascript' src = '<?php echo BP_PLUGIN_URL . 'jQuery-slimScroll-1.1.0/jquery.slimscroll.min.js' ?>'></script>
 
 <script type="text/javascript">
