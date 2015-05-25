@@ -350,7 +350,12 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			$activity_id      = $item_id;
 			$poster_user_id   = $secondary_item_id;
 			$at_mention_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/mentions/';
-			$at_mention_title = sprintf( __( '@%s Mentions', 'buddypress' ), bp_get_loggedin_user_username() );
+                        $user_display_name = bp_get_loggedin_user_username();
+                        if (strlen($user_display_name) >= 10)
+                        {
+                            $user_display_name = substr($user_display_name, 0, 3).'~ ';
+                        }
+			$at_mention_title = sprintf( __( '@%s Mentions', 'buddypress' ), $user_display_name );
 
 			if ( (int) $total_items > 1 ) {
 				$text = sprintf( __( 'You have %1$d new mentions', 'buddypress' ), (int) $total_items );
@@ -372,6 +377,10 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
                                                             .'</a></div>';
                         } else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
+                                if (strlen($user_fullname) >= 10)
+                                {
+                                    $user_fullname = substr($user_fullname, 0, 3).'~ ';
+                                }
 				$text =  sprintf( __( '<span class="username">%1$s</span> mentioned you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_at_mentions_notification';
 
@@ -394,7 +403,7 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
                                                         .'</a></div>';
 
 			}
-                        $mention_message_html = '<div class="notification message" style="display:inline-block;height:inherit;">'.'<a class="" href="'.$at_mention_link.'">'.$text.'</a></div>';
+                        $mention_message_html = '<div class="notification message">'.'<a class="" href="'.$at_mention_link.'">'.$text.'</a></div>';
                         
                         $bp_mention_html = '<div class="ab-notification-item" >';
                         $bp_mention_html .= $activity_mention_avatar_html.$mention_message_html.$my_avatar_html.'</div>';
@@ -416,7 +425,14 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			$activity_id      = $item_id;
 			$poster_user_id   = $secondary_item_id;
 			$at_friend_share_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/friends/';
-			$at_friend_share_title = sprintf( __( '@%s Have Shared', 'buddypress' ), bp_get_loggedin_user_username() );
+                        
+                        $user_display_name = bp_get_loggedin_user_username();
+                        if (strlen($user_display_name) >= 10)
+                        {
+                            $user_display_name = substr($user_display_name, 0, 3).'~ ';
+                        }
+
+			$at_friend_share_title = sprintf( __( '@%s Have Shared', 'buddypress' ), $user_display_name );
 
 			if ( (int) $total_items > 1 ) {
 				$text = sprintf( __( 'You have %1$d new shared for you', 'buddypress' ), (int) $total_items );
@@ -439,7 +455,11 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 
 			} else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
-				$text =  sprintf( __( '<span class="username">%1$s</span> shared for you', 'buddypress' ), $user_fullname );
+                                if (strlen($user_fullname) >= 10)
+                                {
+                                    $user_fullname = substr($user_fullname, 0, 3).'~ ';
+                                }				
+                                $text =  sprintf( __( '<span class="username">%1$s</span> shared for you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_share_for_you_notification';
                                 
                                 $user_link = bp_core_get_user_domain($secondary_item_id);

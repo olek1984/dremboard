@@ -80,6 +80,7 @@ add_action( 'bp_activity_comment_posted', 'ac_notifier_notify', 10, 2 );///hook 
  * @since 1.0.2
  * @desc format and show the notification to the user
  */
+/*
 function ac_notifier_format_notifications( $action, $activity_id, $secondary_item_id, $total_items, $format = 'string' ) {
    
     
@@ -145,6 +146,114 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
         return array(
                 'link'  => $link,
                 'text'  => $text);
+     }
+   
+    }
+    
+return false;
+}
+*/
+
+function ac_notifier_format_notifications( $action, $activity_id, $secondary_item_id, $total_items, $format = 'string' ) {
+   
+    
+    global $bp;
+    
+    $glue = '';
+    
+    
+    $user_names=array();
+    
+    $activity = new BP_Activity_Activity( $activity_id );
+    
+    $link = ac_notifier_activity_get_permalink( $activity_id );
+  
+       //if it is the original poster, say your, else say %s's post
+    $user_display_name = bp_core_get_user_displayname ( $activity->user_id );
+    if (strlen($user_display_name) >= 5)
+    {
+        $user_display_name = substr($user_display_name, 0, 3).'~ ';
+    }
+    if( get_current_user_id() == $activity->user_id ) {
+                $text = __( 'your' );
+                $also = '';
+    }else{
+         
+        $text = sprintf( __( "<span class='username'>%s</span>'s" ),  $user_display_name );//somone's
+        $also = ' also';
+          
+    }
+    
+    $ac_action = 'new_activity_comment_' . $activity_id;
+
+    if( $action == $ac_action ) {
+	//if ( (int)$total_items > 1 ) {
+        $users = ac_notifier_find_involved_persons( $activity_id );
+        
+        $total_user =  $count = count( $users );//how many unique users have commented
+        
+        if( $count > 2 ) {
+              $users = array_slice( $users, $count-2 );//just show name of two poster, rest should be as and 'n' other also commeted
+              $count = $count - 2;
+              $glue=", ";
+        }elseif( $total_user == 2 ){
+             $glue = ' and ';//if there are 2 unique users , say x and y commented
+        }
+        
+       $is_first_user = true; 
+       foreach( (array)$users as $user_id ) 
+       {
+           if ($is_first_user)
+           {
+               $first_userid = $user_id;
+               $is_first_user = false;
+           }
+           $loop_user_display_name = bp_core_get_user_displayname ( $user_id );
+           if (strlen($loop_user_display_name) >= 5)
+           {
+               $loop_user_display_name = substr($loop_user_display_name, 0,3).'~ ';
+           }
+           $user_names[] = '<span class="username">'.$loop_user_display_name.'</span>';
+       }
+        
+    	$commenting_users = '';
+    	    
+       if( !empty( $user_names ) )
+            $commenting_users = join ( $glue, $user_names );
+                   
+       
+         if( $total_user > 2 )
+            $text = $commenting_users. ' and ' . $count. ' others' . $also . ' commented on '. $text. ' post';//can we change post to some meaningfull thing depending on the activity item ?
+         else
+            $text = $commenting_users. $also . ' commented on ' . $text . ' post';
+
+        $avatar = bp_core_fetch_avatar( array( 'item_id' => $first_userid, 'width' => 40, 'height' => 40 ) );
+        $avatar_html = '<div class="notification avatar">'
+                                    .'<a href="'
+                                    .$link
+                                    .'" >'
+                                    .$avatar
+                                    .'</a></div>';
+
+        $message_html = '<div class="notification message" >'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+
+        $ac_notify_html = '<div class="ab-notification-item">';
+
+        $empty_avatar_html = '<div class="notification avatar empty">'
+                                    .'<a href="'
+                                    .$link
+                                    .'">'
+                                    .$avatar
+                                    .'</a></div>';
+        $ac_notify_html .= $avatar_html.$message_html.$empty_avatar_html.'</div>';
+     
+     
+     if( $format == 'string' ){
+       return apply_filters( 'bp_activity_multiple_new_comment_notification', $ac_notify_html );
+     }else{
+        return array(
+                //'link'  => $link,
+                'text'  => $ac_notify_html);
      }
    
     }

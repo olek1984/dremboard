@@ -20,14 +20,19 @@
 
 #wpadminbar .quicklinks .ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li {
   float: none;
-  margin: 5px;
+  margin: 0 5px 3px 5px;
   height: 55px;
+  border-radius: 5px;
 }
 
 #wpadminbar .quicklinks .ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li a
 {
-  display: block;
-  line-height:20px;
+  display: inline-block;
+  /*line-height:20px;
+  height:50px;
+  overflow:hidden;
+  font: 400 13px "Open Sans", sans-serif;*/
+  line-height:16px;
 }
 
 /*
@@ -45,19 +50,21 @@ img.avatar.user-42-avatar.avatar-25.photo {
 */
 
 #wpadminbar .notification.avatar,#wpadminbar .notification.drem {
-  max-width: 40px;
-  max-height:40px;
+  max-width: 45px;
+  max-height:45px;
   margin-left: 5px;
   margin-right: 5px;
   display: inline-block;
+  /*height:44px;*/
   
 }
 
 #wpadminbar .notification.message {
   width:180px;
-  height:40px;
-  margin-left: 15px;
-  display: inline-block;
+  height:50px;
+  padding-left: 15px;
+  display: table-cell;
+  vertical-align:middle;
 }
 
 #wpadminbar .notification.avatar img, 
@@ -85,8 +92,10 @@ img.avatar.user-42-avatar.avatar-25.photo {
 
 #wpadminbar .quicklinks .menupop ul li .ab-item .ab-notification-item {
   white-space:normal;
-  min-width:300px;
-  margin:0px;
+  min-width:305px;
+  height:50px;
+  padding:3px 0;
+  display:table-row;
 }
 
 #wpadminbar .notification.avatar.empty {
@@ -111,16 +120,23 @@ img.avatar.user-42-avatar.avatar-25.photo {
     color: #2ea2cc;
 }
 
-#wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-default ul li .ab-item {
+#wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-default li .ab-item {
   height:50px;
-  padding-top:8px;
+  min-width: 305px;
+  padding: 3px 0;
 }
 
 #wpadminbar span.username {
   font-size:14px;
   font-weight:bold;
+  line-height:16px;
+  /*color:green;
+  font-style:italic;*/
 }
 
+#wpadminbar .slimScrollDiv {
+  height:415px !important;
+}
 /*Notification Table */
 
 

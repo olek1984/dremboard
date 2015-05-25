@@ -130,6 +130,7 @@ add_action( 'familys_familyship_accepted', 'familys_notification_accepted_reques
  *        'array' for WP Toolbar. Default: 'string'.
  * @return array|string
  */
+/*
 function familys_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
 
 	switch ( $action ) {
@@ -176,7 +177,115 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
 
 	return $return;
 }
+*/
+function familys_format_notifications( $action, $item_id, $secondary_item_id, $total_items, $format = 'string' ) {
 
+	switch ( $action ) {
+		case 'familyship_accepted':
+                        $avatar_html = '';
+                    
+                        $link = trailingslashit( bp_loggedin_user_domain() . bp_get_familys_slug() . '/my-familys' );
+                        $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                        $empty_avatar_html = '<div class="notification avatar empty">'
+                                                    .'<a href="'
+                                                    .$link
+                                                    .'">'
+                                                    .$avatar
+                                                    .'</a></div>';
+
+			// Set up the string and the filter
+			if ( (int) $total_items > 1 ) {
+				$text = sprintf( __( '<span class="username">%s</span> and %d familys accepted your familyship requests', 'buddypress' ), bp_core_get_user_displayname( $item_id ), (int) $total_items - 1);
+				$filter = 'bp_familys_multiple_familyship_accepted_notification';
+                                $user_link = bp_core_get_user_domain($item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                                $avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+
+			} else {
+				$text = sprintf( __( '<span class="username">%s</span> accepted your familyship request', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$filter = 'bp_familys_single_familyship_accepted_notification';
+                                $user_link = bp_core_get_user_domain($item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                                $avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+			}
+                        $message_html = '<div class="notification message" >'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+                        $bp_familyship_accepted_html = '<div class="ab-notification-item">';
+			$bp_familyship_accepted_html .= $avatar_html.$message_html.$empty_avatar_html.'</div>';
+                        $bp_friendship_text = $bp_familyship_accepted_html;
+
+
+			break;
+
+		case 'familyship_request':
+                        $avatar_html = '';
+			$link = bp_loggedin_user_domain() . bp_get_familys_slug() . '/requests/?new';
+                        $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                        $empty_avatar_html = '<div class="notification avatar empty">'
+                                                    .'<a href="'
+                                                    .$link
+                                                    .'">'
+                                                    .$avatar
+                                                    .'</a></div>';
+
+			// Set up the string and the filter
+			if ( (int) $total_items > 1 ) {
+				$text = sprintf( __( 'You have %d pending familyship requests', 'buddypress' ), (int) $total_items );
+				$filter = 'bp_familys_multiple_familyship_request_notification';
+                                $avatar_html = $empty_avatar_html;
+			} else {
+				$text = sprintf( __( 'You have a familyship request from <span class="username">%s</span>', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$filter = 'bp_familys_single_familyship_request_notification';
+                                $user_link = bp_core_get_user_domain($item_id);
+                                $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
+                                $avatar_html = '<div class="notification avatar">'
+                                                            .'<a href="'
+                                                            .$user_link
+                                                            .'">'
+                                                            .$avatar
+                                                            .'</a></div>';
+                                
+			}
+                        $message_html = '<div class="notification message" >'.'<a class="" href="'.$link.'">'.$text.'</a></div>';
+                        $bp_familyship_request_html = '<div class="ab-notification-item">';
+                        
+                        $my_link = bp_core_get_user_domain(bp_loggedin_user_id());
+                        $my_avatar = bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 40, 'height' => 40 ) );
+                        $my_avatar_html = '<div class="notification avatar">'
+                                                .'<a href="'
+                                                .$my_link
+                                                .'">'
+                                                .$my_avatar
+                                                .'</a></div>';
+                        $bp_familyship_request_html .= $my_avatar_html.$message_html.$avatar_html.'</div>';
+                        $bp_friendship_text = $bp_familyship_request_html;
+
+			break;
+	}
+
+	// Return either an HTML link or an array, depending on the requested format
+	if ( 'string' == $format ) {
+		$return = apply_filters( $filter, $bp_friendship_text, (int) $total_items );
+	} else {
+		$return = apply_filters( $filter, array(
+			//'link' => $link,
+			'text' => $bp_friendship_text
+		), (int) $total_items );
+	}
+
+	do_action( 'familys_format_notifications', $action, $item_id, $secondary_item_id, $total_items, $return );
+
+	return $return;
+}
 /**
  * Clear family-related notifications when ?new=1
  */

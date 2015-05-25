@@ -121,7 +121,7 @@ jQuery( document ).ready( function() {
 
     var tempTag = jQuery('li#wp-admin-bar-bp-notifications .ab-sub-wrapper ul');
     tempTag.slimScroll({
-        height: '420px'
+        height: '400px'
     });
     
 });
