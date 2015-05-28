@@ -351,10 +351,6 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			$poster_user_id   = $secondary_item_id;
 			$at_mention_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/mentions/';
                         $user_display_name = bp_get_loggedin_user_username();
-                        if (strlen($user_display_name) >= 10)
-                        {
-                            $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                        }
 			$at_mention_title = sprintf( __( '@%s Mentions', 'buddypress' ), $user_display_name );
 
 			if ( (int) $total_items > 1 ) {
@@ -377,11 +373,7 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
                                                             .'</a></div>';
                         } else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
-                                if (strlen($user_fullname) >= 10)
-                                {
-                                    $user_fullname = substr($user_fullname, 0, 3).'~ ';
-                                }
-				$text =  sprintf( __( '<span class="username">%1$s</span> mentioned you', 'buddypress' ), $user_fullname );
+				$text =  sprintf( __( '%1$s mentioned you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_at_mentions_notification';
 
                                 $user_link = bp_core_get_user_domain($secondary_item_id);
@@ -426,12 +418,7 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 			$poster_user_id   = $secondary_item_id;
 			$at_friend_share_link  = bp_loggedin_user_domain() . bp_get_activity_slug() . '/friends/';
                         
-                        $user_display_name = bp_get_loggedin_user_username();
-                        if (strlen($user_display_name) >= 10)
-                        {
-                            $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                        }
-
+			$user_display_name = bp_get_loggedin_user_username();
 			$at_friend_share_title = sprintf( __( '@%s Have Shared', 'buddypress' ), $user_display_name );
 
 			if ( (int) $total_items > 1 ) {
@@ -455,11 +442,7 @@ function bp_activity_format_notifications( $action, $item_id, $secondary_item_id
 
 			} else {
 				$user_fullname = bp_core_get_user_displayname( $poster_user_id );
-                                if (strlen($user_fullname) >= 10)
-                                {
-                                    $user_fullname = substr($user_fullname, 0, 3).'~ ';
-                                }				
-                                $text =  sprintf( __( '<span class="username">%1$s</span> shared for you', 'buddypress' ), $user_fullname );
+                $text =  sprintf( __( '%1$s shared for you', 'buddypress' ), $user_fullname );
 				$filter = 'bp_activity_single_share_for_you_notification';
                                 
                                 $user_link = bp_core_get_user_domain($secondary_item_id);

@@ -21,7 +21,7 @@
 #wpadminbar .quicklinks .ab-sub-wrapper ul#wp-admin-bar-bp-notifications-default li {
   float: none;
   margin: 0 5px 3px 5px;
-  height: 55px;
+  min-height: 55px;
   border-radius: 5px;
 }
 
@@ -33,6 +33,7 @@
   overflow:hidden;
   font: 400 13px "Open Sans", sans-serif;*/
   line-height:16px;
+  height:auto;
 }
 
 /*
@@ -52,16 +53,18 @@ img.avatar.user-42-avatar.avatar-25.photo {
 #wpadminbar .notification.avatar,#wpadminbar .notification.drem {
   max-width: 45px;
   max-height:45px;
-  margin-left: 5px;
-  margin-right: 5px;
-  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  /*display: inline-block;*/
+  display: table-cell;
+  vertical-align:middle;
   /*height:44px;*/
   
 }
 
 #wpadminbar .notification.message {
   width:180px;
-  height:50px;
+  min-height:50px;
   padding-left: 15px;
   display: table-cell;
   vertical-align:middle;
@@ -78,22 +81,25 @@ img.avatar.user-42-avatar.avatar-25.photo {
 #wpadminbar .notification.avatar img {
   border-radius: 50%;
   -khtml-border-radius: 50%;
+  vertical-align:middle;
 }
 
 #wpadminbar .notification.drem img {
   border-radius: 20%;
   -khtml-border-radius: 20%;
+  vertical-align:middle;
 }
 
 #wpadminbar .notification.drem video {
   border-radius: 20%;
   -khtml-border-radius: 20%;
+  vertical-align:middle;
 }
 
 #wpadminbar .quicklinks .menupop ul li .ab-item .ab-notification-item {
   white-space:normal;
   min-width:305px;
-  height:50px;
+  min-height:50px;
   padding:3px 0;
   display:table-row;
 }
@@ -103,7 +109,6 @@ img.avatar.user-42-avatar.avatar-25.photo {
 }
 
 #wpadminbar .ab-top-secondary #wp-admin-bar-bp-notifications-default {
-  background-color: #333;
   border-radius:5px;
   border:2px solid #333;
 }
@@ -121,22 +126,27 @@ img.avatar.user-42-avatar.avatar-25.photo {
 }
 
 #wpadminbar .quicklinks .menupop #wp-admin-bar-bp-notifications-default li .ab-item {
-  height:50px;
+  min-height:50px;
   min-width: 305px;
   padding: 3px 0;
+  height:100%
 }
 
+/*
 #wpadminbar span.username {
+
   font-size:14px;
   font-weight:bold;
   line-height:16px;
-  /*color:green;
-  font-style:italic;*/
+  color:green;
+  font-style:italic;
 }
+*/
 
 #wpadminbar .slimScrollDiv {
   height:415px !important;
 }
+
 /*Notification Table */
 
 

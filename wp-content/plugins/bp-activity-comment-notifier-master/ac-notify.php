@@ -170,16 +170,12 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
   
        //if it is the original poster, say your, else say %s's post
     $user_display_name = bp_core_get_user_displayname ( $activity->user_id );
-    if (strlen($user_display_name) >= 5)
-    {
-        $user_display_name = substr($user_display_name, 0, 3).'~ ';
-    }
     if( get_current_user_id() == $activity->user_id ) {
                 $text = __( 'your' );
                 $also = '';
     }else{
          
-        $text = sprintf( __( "<span class='username'>%s</span>'s" ),  $user_display_name );//somone's
+        $text = sprintf( __( "%s's" ),  $user_display_name );//somone's
         $also = ' also';
           
     }
@@ -209,11 +205,7 @@ function ac_notifier_format_notifications( $action, $activity_id, $secondary_ite
                $is_first_user = false;
            }
            $loop_user_display_name = bp_core_get_user_displayname ( $user_id );
-           if (strlen($loop_user_display_name) >= 5)
-           {
-               $loop_user_display_name = substr($loop_user_display_name, 0,3).'~ ';
-           }
-           $user_names[] = '<span class="username">'.$loop_user_display_name.'</span>';
+           $user_names[] = $loop_user_display_name;
        }
         
     	$commenting_users = '';

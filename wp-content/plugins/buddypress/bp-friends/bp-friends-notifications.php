@@ -147,12 +147,8 @@ function friends_format_notifications( $action, $item_id, $secondary_item_id, $t
                                                     .'</a></div>';
 			// Set up the string and the filter
 			if ( (int) $total_items > 1 ) {
-                                $user_display_name = bp_core_get_user_displayname( $item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }
-				$text = sprintf( __('<span class="username">%s</span> and %d friends accepted your friendship requests', 'buddypress' ),  $user_display_name, (int) $total_items - 1);
+				$user_display_name = bp_core_get_user_displayname( $item_id );
+				$text = sprintf( __('%s and %d friends accepted your friendship requests', 'buddypress' ),  $user_display_name, (int) $total_items - 1);
 				$filter = 'bp_friends_multiple_friendship_accepted_notification';
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
@@ -164,11 +160,7 @@ function friends_format_notifications( $action, $item_id, $secondary_item_id, $t
                                                             .'</a></div>';
 			} else {
                                 $user_display_name = bp_core_get_user_displayname( $item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }				
-                                $text = sprintf( __( '<span class="username">%s</span> accepted your friendship request', 'buddypress' ),  $user_display_name );
+                                $text = sprintf( __( '%s accepted your friendship request', 'buddypress' ),  $user_display_name );
 				$filter = 'bp_friends_single_friendship_accepted_notification';
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
@@ -207,12 +199,8 @@ function friends_format_notifications( $action, $item_id, $secondary_item_id, $t
                                 $friendship_request_avatar_html = $empty_avatar_html;
 			} else {
                                 $user_display_name = bp_core_get_user_displayname( $item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }				
                             
-				$text = sprintf( __( 'You have a friendship request from <span class="username">%s</span>', 'buddypress' ),  $user_display_name );
+				$text = sprintf( __( 'You have a friendship request from %s', 'buddypress' ),  $user_display_name );
 				$filter = 'bp_friends_single_friendship_request_notification';
 
                                 $user_link = bp_core_get_user_domain($item_id);

@@ -398,11 +398,7 @@ function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, 
 			if ( 1 == $total_items ) {
 				//$text = __( '1 more user is now following you', 'bp-follow' );
                                 $user_display_name = bp_core_get_user_displayname( $item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }
-                                $text = sprintf(__( '<span class="username">%s</span> is now following you', 'bp-follow' ), $user_display_name);
+                                $text = sprintf(__( '%s is now following you', 'bp-follow' ), $user_display_name);
                                 
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
@@ -425,11 +421,7 @@ function bp_follow_format_notifications( $action, $item_id, $secondary_item_id, 
 //                                                    .'</a></div>';
 //                                $new_follow_avatar_html = $empty_avatar_html;
                                 $user_display_name = bp_core_get_user_displayname( $item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }
-                                $text = sprintf( __( '<span class="username">%s</span> and %d more users are now following you', 'bp-follow' ), $user_display_name, $total_items - 1 );
+                                $text = sprintf( __( '%s and %d more users are now following you', 'bp-follow' ), $user_display_name, $total_items - 1 );
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
                                 $new_follow_avatar_html = '<div class="notification avatar">'

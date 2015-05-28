@@ -138,20 +138,12 @@ function likes_format_notifications( $action, $item_id, $secondary_item_id, $tot
 			if ( (int) $total_items > 1 ) {
                             //$text = sprintf( __( '%s and %d other people like your drēm', 'buddypress' ), bp_core_get_user_displayname( $secondary_item_id ), (int) $total_items - 1 );
                                 $user_display_name = bp_core_get_user_displayname( $secondary_item_id );
-                                if (strlen($user_display_name) >= 10)
-                                {
-                                    $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                                }
-                                $text = sprintf( __( '<span class="username">%s</span> and %d other people like your '.$drem_text, 'buddypress' ), $user_display_name, (int) $total_items - 1 );
+                                $text = sprintf( __( '%s and %d other people like your '.$drem_text, 'buddypress' ), $user_display_name, (int) $total_items - 1 );
                             $filter = 'bp_likes_multiple_new_like_notification';
 			} else {
                             //$text = sprintf( __( '%s likes your drēm', 'buddypress' ),  bp_core_get_user_displayname( $secondary_item_id ) );
                             $user_display_name = bp_core_get_user_displayname( $secondary_item_id );
-                            if (strlen($user_display_name) >= 10)
-                            {
-                                $user_display_name = substr($user_display_name, 0, 3).'~ ';
-                            }
-                            $text = sprintf( __( '<span class="username">%s</span> likes your '.$drem_text, 'buddypress' ),  $user_display_name );
+                            $text = sprintf( __( '%s likes your '.$drem_text, 'buddypress' ),  $user_display_name );
                             $filter = 'bp_likes_single_new_like_notification';
 			}
                         

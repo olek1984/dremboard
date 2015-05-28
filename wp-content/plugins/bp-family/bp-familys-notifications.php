@@ -142,7 +142,7 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
 				$text = sprintf( __( '%d familys accepted your familyship requests', 'buddypress' ), (int) $total_items );
 				$filter = 'bp_familys_multiple_familyship_accepted_notification';
 			} else {
-				$text = sprintf( __( '<span class="username">%s</span> accepted your familyship request', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$text = sprintf( __( '%s accepted your familyship request', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
 				$filter = 'bp_familys_single_familyship_accepted_notification';
 			}
 
@@ -156,7 +156,7 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
 				$text = sprintf( __( 'You have %d pending familyship requests', 'buddypress' ), (int) $total_items );
 				$filter = 'bp_familys_multiple_familyship_request_notification';
 			} else {
-				$text = sprintf( __( 'You have a familyship request from <span class="username">%s</span>', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$text = sprintf( __( 'You have a familyship request from %s', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
 				$filter = 'bp_familys_single_familyship_request_notification';
 			}
 
@@ -195,7 +195,7 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
 
 			// Set up the string and the filter
 			if ( (int) $total_items > 1 ) {
-				$text = sprintf( __( '<span class="username">%s</span> and %d familys accepted your familyship requests', 'buddypress' ), bp_core_get_user_displayname( $item_id ), (int) $total_items - 1);
+				$text = sprintf( __( '%s and %d familys accepted your familyship requests', 'buddypress' ), bp_core_get_user_displayname( $item_id ), (int) $total_items - 1);
 				$filter = 'bp_familys_multiple_familyship_accepted_notification';
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
@@ -207,7 +207,7 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
                                                             .'</a></div>';
 
 			} else {
-				$text = sprintf( __( '<span class="username">%s</span> accepted your familyship request', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$text = sprintf( __( '%s accepted your familyship request', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
 				$filter = 'bp_familys_single_familyship_accepted_notification';
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
@@ -243,7 +243,7 @@ function familys_format_notifications( $action, $item_id, $secondary_item_id, $t
 				$filter = 'bp_familys_multiple_familyship_request_notification';
                                 $avatar_html = $empty_avatar_html;
 			} else {
-				$text = sprintf( __( 'You have a familyship request from <span class="username">%s</span>', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
+				$text = sprintf( __( 'You have a familyship request from %s', 'buddypress' ),  bp_core_get_user_displayname( $item_id ) );
 				$filter = 'bp_familys_single_familyship_request_notification';
                                 $user_link = bp_core_get_user_domain($item_id);
                                 $avatar = bp_core_fetch_avatar( array( 'item_id' => $item_id, 'width' => 40, 'height' => 40 ) );
